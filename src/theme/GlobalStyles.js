@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
 
@@ -16,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
 
     h1, h2, h3, a, button {
        font-family: 'Yanone Kaffeesatz', sans-serif; 
+       font-weight: 700;
     }
 
     ul, li, a {

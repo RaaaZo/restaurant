@@ -1,18 +1,13 @@
-import React from 'react';
-
-import { Header } from './Header';
+import { Header } from "components/atoms/Header";
+import React from "react";
 
 export default {
-  title: 'Example/Header',
-  component: Header,
+  title: "atoms/Header",
+  component: Header
 };
 
-const Template = (args) => <Header {...args} />;
+export const LightMode = () => <Header>Najlepsza restauracja w mieście</Header>;
 
-export const LoggedIn = Template.bind({});
-LoggedIn.args = {
-  user: {},
-};
-
-export const LoggedOut = Template.bind({});
-LoggedOut.args = {};
+export const DarkMode = () => (
+  <Header darkMode={true}>Najlepsza restauracja w mieście</Header>
+);

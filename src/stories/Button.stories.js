@@ -1,36 +1,11 @@
-import React from 'react';
-
-import { Button } from './Button';
+import { Button } from "components/atoms/Button";
+import React from "react";
 
 export default {
-  title: 'Example/Button',
-  component: Button,
-  argTypes: {
-    backgroundColor: { control: 'color' },
-  },
+  title: "atoms/Button",
+  component: Button
 };
 
-const Template = (args) => <Button {...args} />;
+export const LightMode = () => <Button>Menu</Button>;
 
-export const Primary = Template.bind({});
-Primary.args = {
-  primary: true,
-  label: 'Button',
-};
-
-export const Secondary = Template.bind({});
-Secondary.args = {
-  label: 'Button',
-};
-
-export const Large = Template.bind({});
-Large.args = {
-  size: 'large',
-  label: 'Button',
-};
-
-export const Small = Template.bind({});
-Small.args = {
-  size: 'small',
-  label: 'Button',
-};
+export const DarkMode = () => <Button darkMode={true}>Menu</Button>;

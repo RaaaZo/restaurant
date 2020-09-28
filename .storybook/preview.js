@@ -1,21 +1,21 @@
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
-import { MainTheme } from 'theme/MainTheme';
-import GlobalStyle from 'theme/GlobalStyles';
 import { BrowserRouter } from 'react-router-dom';
+import StyleTemplate from '../src/templates/StyleTemplate';
 
 export const parameters = {
-  actions: { argTypesRegex: '^on[A-Z].*' },
-};
+         actions: { argTypesRegex: "^on[A-Z].*" },
+         layout: "fullscreen",
+       };
+
+
 
 export const decorators = [
   (Story) => (
     <>
       <BrowserRouter>
-        <ThemeProvider theme={MainTheme}>
-          <GlobalStyle />
+        <StyleTemplate>
           <Story />
-        </ThemeProvider>
+        </StyleTemplate>
       </BrowserRouter>
     </>
   ),
