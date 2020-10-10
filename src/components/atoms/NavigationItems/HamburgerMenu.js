@@ -4,7 +4,7 @@ export const HamburgerMenu = styled.div`
   position: relative;
   width: 40px;
   height: 3px;
-  background-color: ${({ theme }) => theme.accentsLight};
+  background-color: ${({ theme }) => theme.navigationDark};
   cursor: pointer;
   transition: 0.4s ease-in-out;
 
@@ -14,7 +14,7 @@ export const HamburgerMenu = styled.div`
     bottom: 7px;
     width: 40px;
     height: 3px;
-    background-color: ${({ theme }) => theme.accentsLight};
+    background-color: ${({ theme }) => theme.navigationDark};
     transition: 0.4s ease-in-out;
 
     ${({ darkMode }) =>
@@ -31,7 +31,7 @@ export const HamburgerMenu = styled.div`
     bottom: -7px;
     width: 25px;
     height: 3px;
-    background-color: ${({ theme }) => theme.accentsLight};
+    background-color: ${({ theme }) => theme.navigationDark};
     transition: 0.4s ease-in-out;
 
     ${({ darkMode }) =>
@@ -54,12 +54,14 @@ export const HamburgerMenu = styled.div`
       &::before {
         content: "";
         transform: translateY(7px) rotate(45deg);
+        background-color: #fff;
       }
       &::after {
         content: "";
         width: 40px;
         margin-left: 0;
         transform: translateY(-7px) rotate(-45deg);
+        background-color: #fff;
       }
     `}
 `;

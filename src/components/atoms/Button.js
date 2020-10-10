@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 export const Button = styled.button`
   width: 200px;
   padding: 10px 0;
+  font-size: ${({ theme }) => theme.fontSize.l};
   background-color: ${({ theme }) => theme.accentsLight};
   border: 2px solid ${({ theme }) => theme.accentsDark};
   border-radius: 15px;
@@ -12,6 +13,10 @@ export const Button = styled.button`
   &:hover {
     background-color: ${({ theme }) => theme.accentsDark};
     border-color: ${({ theme }) => theme.accentsLight};
+  }
+
+  @media (min-width: 410px) {
+    font-size: ${({ theme: { fontSize } }) => fontSize.xl};
   }
 
   @media (min-width: 768px) {

@@ -1,10 +1,10 @@
 export const MainTheme = {
   backgroundLight: "#F2F3FB",
-  backgroundDark: "#121212",
-  accentsDark: "#3DD598",
+  backgroundDark: "#3C3C3C",
+  accentsDark: "#00C896",
   accentsLight: "#25C685",
-  navigationLight: "#121212",
-  navigationDark: "#b3b4ba",
+  navigationLight: "#00C896",
+  navigationDark: "#121212",
 
   fontSize: {
     xs: "1rem",

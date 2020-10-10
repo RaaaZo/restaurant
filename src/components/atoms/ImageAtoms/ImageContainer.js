@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
 
 export const ImageContainer = styled.div`
   position: relative;
@@ -7,12 +7,14 @@ export const ImageContainer = styled.div`
   height: 300px;
   cursor: pointer;
   transition: transform 0.4s ease-in-out;
+  display: flex;
+  justify-content: center;
 
   @media (min-width: 768px) {
     height: 400px;
 
-    ${({ withText }) =>
-      withText &&
+    ${({ imageWithText }) =>
+      imageWithText &&
       css`
         &:hover {
           transform: scale(1.02);

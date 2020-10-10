@@ -2,6 +2,8 @@ import styled, { css } from "styled-components";
 
 export const Paragraph = styled.p`
   font-size: ${({ theme: { fontSize } }) => fontSize.m};
+  text-align: justify;
+  text-align-last: center;
 
   @media (min-width: 410px) {
     font-size: ${({ theme: { fontSize } }) => fontSize.l};

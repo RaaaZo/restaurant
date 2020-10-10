@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled, { css, ThemeProvider } from "styled-components";
 import GlobalStyle from "../theme/GlobalStyles";
 import { MainTheme } from "../theme/MainTheme";
+import { ModeContext } from "contexts/ModeContext";
 
-const Wrapper = styled.div`
+const PagesWrapper = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
+`;
+
+const Background = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
   background-color: ${({ theme }) => theme.backgroundLight};
 
   ${({ darkMode }) =>
@@ -23,9 +29,10 @@ const StyleTemplate = ({ children }) => {
   return (
     <ThemeProvider theme={MainTheme}>
       <GlobalStyle />
-      <Wrapper darkMode={true} data-testid="theme-provider">
+      <PagesWrapper darkMode={false} data-testid="theme-provider">
+        <Background />
         {children}
-      </Wrapper>
+      </PagesWrapper>
     </ThemeProvider>
   );
 };
