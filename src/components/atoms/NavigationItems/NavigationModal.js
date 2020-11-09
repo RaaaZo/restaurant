@@ -1,8 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import { NavLink } from "react-router-dom";
-import styled, { css } from "styled-components";
+import { NavLink } from 'react-router-dom'
+import styled, { css } from 'styled-components'
 
 export const Modal = styled.div`
   transform: translateX(150%);
@@ -11,6 +11,7 @@ export const Modal = styled.div`
   right: 0;
   width: 150px;
   height: 100vh;
+  z-index: 999;
 
   background: transparent;
   background-color: #00c896;
@@ -28,25 +29,12 @@ export const Modal = styled.div`
     display: none;
   }
 
-  ${({ darkMode }) =>
-    darkMode &&
-    css`
-      background: linear-gradient(
-        180deg,
-        rgba(68, 68, 68, 1) 0%,
-        rgba(18, 18, 18, 1) 100%
-      );
-      -webkit-box-shadow: -5px 0px 22px 5px rgba(0, 200, 150, 1);
-      -moz-box-shadow: -5px 0px 22px 5px rgba(0, 200, 150, 1);
-      box-shadow: -5px 0px 22px 5px rgba(0, 200, 150, 1);
-    `}
-
   ${({ isOpen }) =>
     isOpen &&
     css`
       transform: translateX(0);
     `}
-`;
+`
 
 const Backdrop = styled.div`
   transform: translateX(150%);
@@ -61,7 +49,7 @@ const Backdrop = styled.div`
     css`
       transform: translateX(0);
     `}
-`;
+`
 
 const List = styled.ul`
   width: 90%;
@@ -80,7 +68,7 @@ const List = styled.ul`
   @media (orientation: landscape) and (min-width: 900px) {
     justify-content: center;
   }
-`;
+`
 
 const ListItem = styled(NavLink)`
   width: 100%;
@@ -113,56 +101,45 @@ const ListItem = styled(NavLink)`
   @media (orientation: landscape) and (min-width: 900px) {
     margin: 30px auto;
   }
-
-  ${({ darkMode }) =>
-    darkMode &&
-    css`
-      color: ${({ theme }) => theme.accentsDark};
-      border-color: ${({ theme }) => theme.accentsDark};
-    `}
-`;
+`
 
 const NavigationModal = ({ isOpen, closeModal }) => {
   return (
     <>
       <Backdrop isOpen={isOpen} onClick={closeModal} />
-      <Modal data-testid="navigation-modal" darkMode={false} isOpen={isOpen}>
+      <Modal isOpen={isOpen}>
         <List>
           <ListItem
-            darkMode={false}
             exact
-            to="/"
-            activeClassName="isActive"
+            to='/'
+            activeClassName='isActive'
             onClick={closeModal}
           >
             Home
           </ListItem>
 
           <ListItem
-            darkMode={false}
             exact
-            to="/menu"
-            activeClassName="isActive"
+            to='/menu'
+            activeClassName='isActive'
             onClick={closeModal}
           >
             Menu
           </ListItem>
 
           <ListItem
-            darkMode={false}
             exact
-            to="/contact"
-            activeClassName="isActive"
+            to='/contact'
+            activeClassName='isActive'
             onClick={closeModal}
           >
             Kontakt
           </ListItem>
 
           <ListItem
-            darkMode={false}
             exact
-            to="/cart"
-            activeClassName="isActive"
+            to='/cart'
+            activeClassName='isActive'
             onClick={closeModal}
           >
             {/* cart svg */}
@@ -170,10 +147,9 @@ const NavigationModal = ({ isOpen, closeModal }) => {
           </ListItem>
 
           <ListItem
-            darkMode={false}
             exact
-            to="/auth"
-            activeClassName="isActive"
+            to='/auth'
+            activeClassName='isActive'
             onClick={closeModal}
           >
             Rejestracja
@@ -181,12 +157,12 @@ const NavigationModal = ({ isOpen, closeModal }) => {
         </List>
       </Modal>
     </>
-  );
-};
+  )
+}
 
 NavigationModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
-  closeModal: PropTypes.func.isRequired
-};
+  closeModal: PropTypes.func.isRequired,
+}
 
-export default NavigationModal;
+export default NavigationModal

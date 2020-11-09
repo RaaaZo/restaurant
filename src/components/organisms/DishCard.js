@@ -1,14 +1,14 @@
-import React, { useEffect, useRef } from "react";
-import styled, { css } from "styled-components";
-import PropTypes from "prop-types";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import React, { useEffect, useRef } from 'react'
+import styled, { css } from 'styled-components'
+import PropTypes from 'prop-types'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-import { Button } from "components/atoms/Button";
-import { Header } from "components/atoms/Header";
-import { Paragraph } from "components/atoms/Paragraph";
+import { Button } from 'components/atoms/Button'
+import { Header } from 'components/atoms/Header'
+import { Paragraph } from 'components/atoms/Paragraph'
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger)
 
 const Wrapper = styled.div`
   width: 100%;
@@ -20,13 +20,7 @@ const Wrapper = styled.div`
   align-items: center;
   border: 2px solid #121212;
   margin: 20px auto;
-
-  ${({ darkMode }) =>
-    darkMode &&
-    css`
-      border-color: ${({ theme }) => theme.accentsDark};
-    `}
-`;
+`
 
 const Img = styled.img`
   width: 100%;
@@ -35,22 +29,22 @@ const Img = styled.img`
   object-fit: cover;
   object-position: center;
   border-radius: 5px;
-`;
+`
 
 const StyledHeader = styled(Header)`
   padding: 0 10px;
-`;
+`
 
 const StyledParagraph = styled(Paragraph)`
   padding: 0 10px;
-`;
+`
 
 const StyledButton = styled(Button)`
   margin-bottom: 20px;
-`;
+`
 
 const DishCard = ({ name, desc, img }) => {
-  const dishRef = useRef();
+  const dishRef = useRef()
 
   useEffect(() => {
     gsap.fromTo(
@@ -58,32 +52,32 @@ const DishCard = ({ name, desc, img }) => {
       { scale: 0 },
       {
         scale: 1,
-        transformOrigin: "center",
+        transformOrigin: 'center',
         duration: 1,
         scrollTrigger: {
-          id: "element",
+          id: 'element',
           trigger: dishRef.current,
-          start: "top-=200 center+=350",
-          toggleActions: "play none none reverse"
-        }
+          start: 'top-=200 center+=350',
+          toggleActions: 'play none none reverse',
+        },
       }
-    );
-  }, []);
+    )
+  }, [])
 
   return (
     <Wrapper ref={dishRef}>
-      <Img src={img} alt="" />
+      <Img src={img} alt='' />
       <StyledHeader>{name}</StyledHeader>
       <StyledParagraph>{desc}</StyledParagraph>
       <StyledButton>Zamów</StyledButton>
     </Wrapper>
-  );
-};
+  )
+}
 
 DishCard.propTypes = {
   name: PropTypes.string.isRequired,
   desc: PropTypes.string.isRequired,
-  img: PropTypes.string.isRequired
-};
+  img: PropTypes.string.isRequired,
+}
 
-export default DishCard;
+export default DishCard

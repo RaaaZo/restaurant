@@ -1,8 +1,8 @@
-import { HamburgerMenu } from "components/atoms/NavigationItems/HamburgerMenu";
-import NavigationModal from "components/atoms/NavigationItems/NavigationModal";
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
-import styled, { css } from "styled-components";
+import { HamburgerMenu } from 'components/atoms/NavigationItems/HamburgerMenu'
+import NavigationModal from 'components/atoms/NavigationItems/NavigationModal'
+import React, { useState } from 'react'
+import { NavLink } from 'react-router-dom'
+import styled, { css } from 'styled-components'
 
 const Wrapper = styled.div`
   width: 100%;
@@ -11,13 +11,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: ${({ theme }) => theme.navigationLight};
-
-  ${({ darkMode }) =>
-    darkMode &&
-    css`
-      background-color: ${({ theme }) => theme.navigationDark};
-    `}
-`;
+`
 
 const HamburgerWrapper = styled.div`
   padding: 20px 5px;
@@ -38,11 +32,11 @@ const HamburgerWrapper = styled.div`
         transform: translateX(-250px);
       }
     `}
-`;
+`
 
 const StyledHamburger = styled(HamburgerMenu)`
   margin-right: 20px;
-`;
+`
 
 const List = styled.ul`
   display: none;
@@ -56,7 +50,7 @@ const List = styled.ul`
   @media (min-width: 1024px) {
     display: flex;
   }
-`;
+`
 
 const ListItem = styled(NavLink)`
   width: 15%;
@@ -84,83 +78,55 @@ const ListItem = styled(NavLink)`
     font-size: ${({ theme }) => theme.fontSize.xl};
     border-width: 3px;
   }
-
-  ${({ darkMode }) =>
-    darkMode &&
-    css`
-      color: ${({ theme }) => theme.accentsDark};
-      border-color: ${({ theme }) => theme.accentsDark};
-    `}
-`;
+`
 
 const Navigation = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
 
   const handleIsOpen = () => {
-    setIsOpen(prevState => !prevState);
-  };
+    setIsOpen((prevState) => !prevState)
+  }
 
   return (
     <>
       <NavigationModal closeModal={handleIsOpen} isOpen={isOpen} />
 
-      <Wrapper data-testid="navigation-wrapper" darkMode={false}>
+      <Wrapper>
         {/* logo backgroundDarkMode fill */}
         <p>Logo</p>
 
         <List>
-          <ListItem darkMode={false} exact to="/" activeClassName="isActive">
+          <ListItem exact to='/' activeClassName='isActive'>
             Home
           </ListItem>
 
-          <ListItem
-            darkMode={false}
-            exact
-            to="/menu"
-            activeClassName="isActive"
-          >
+          <ListItem exact to='/menu' activeClassName='isActive'>
             Menu
           </ListItem>
 
-          <ListItem
-            darkMode={false}
-            exact
-            to="/contact"
-            activeClassName="isActive"
-          >
+          <ListItem exact to='/contact' activeClassName='isActive'>
             Kontakt
           </ListItem>
 
-          <ListItem
-            darkMode={false}
-            exact
-            to="/cart"
-            activeClassName="isActive"
-          >
-            {/* cart svg */}
+          <ListItem exact to='/cart' activeClassName='isActive'>
             Zamówienie
           </ListItem>
 
-          <ListItem
-            darkMode={false}
-            exact
-            to="/auth"
-            activeClassName="isActive"
-          >
+          <ListItem exact to='/auth' activeClassName='isActive'>
             Rejestracja
           </ListItem>
         </List>
 
         <HamburgerWrapper
-          data-testid="navigation-hamburger"
+          data-testid='navigation-hamburger'
           isOpen={isOpen}
           onClick={handleIsOpen}
         >
-          <StyledHamburger darkMode={false} isOpen={isOpen} />
+          <StyledHamburger isOpen={isOpen} />
         </HamburgerWrapper>
       </Wrapper>
     </>
-  );
-};
+  )
+}
 
-export default Navigation;
+export default Navigation

@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components'
 
 export const Button = styled.button`
   width: 200px;
@@ -28,18 +28,4 @@ export const Button = styled.button`
     width: 350px;
     padding: 20px 0;
   }
-
-  ${({ darkMode }) =>
-    darkMode &&
-    css`
-      background-color: ${({ theme }) => theme.accentsDark};
-      border: 2px solid ${({ theme }) => theme.accentsLight};
-      transition: background-color 0.4s ease-in-out,
-        border-color 0.4s ease-in-out;
-
-      &:hover {
-        background-color: ${({ theme }) => theme.accentsLight};
-        border-color: ${({ theme }) => theme.accentsDark};
-      }
-    `}
-`;
+`

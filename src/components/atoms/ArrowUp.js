@@ -1,6 +1,6 @@
-import React from "react";
-import { ReactComponent as ArrowSvg } from "assets/svg/arrow-up.svg";
-import styled, { css } from "styled-components";
+import React from 'react'
+import { ReactComponent as ArrowSvg } from 'assets/svg/arrow-up.svg'
+import styled, { css } from 'styled-components'
 
 const StyledSvg = styled(ArrowSvg)`
   width: 40px;
@@ -17,20 +17,14 @@ const StyledSvg = styled(ArrowSvg)`
     right: 2%;
     bottom: 4%;
   }
-
-  ${({ darkMode }) =>
-    darkMode &&
-    css`
-      fill: #fff;
-    `}
-`;
+`
 
 const ArrowUp = () => {
   function pushToTop() {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  return <StyledSvg darkMode={false} onClick={pushToTop} />;
-};
+  return <StyledSvg onClick={pushToTop} />
+}
 
-export default ArrowUp;
+export default ArrowUp

@@ -1,5 +1,5 @@
-import { Field } from "formik";
-import styled, { css } from "styled-components";
+import { Field } from 'formik'
+import styled, { css } from 'styled-components'
 
 export const Input = styled(Field)`
   width: 100%;
@@ -28,11 +28,4 @@ export const Input = styled(Field)`
     font-size: ${({ theme: { fontSize } }) => fontSize.xl};
     padding: 11px 0;
   }
-
-  ${({ darkMode }) =>
-    darkMode &&
-    css`
-      border-color: ${({ theme }) => theme.accentsDark};
-      outline-color: ${({ theme }) => theme.accentsDark};
-    `};
-`;
+`

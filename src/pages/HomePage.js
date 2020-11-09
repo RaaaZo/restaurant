@@ -117,6 +117,19 @@ const HomePage = () => {
         toggleActions: 'play none none reverse',
       },
     })
+
+    if (window.innerWidth >= 1280) {
+      gsap.to(bottomImages.current[0], {
+        x: '-50%',
+        delay: 0.8,
+        duration: 1.2,
+      })
+      gsap.to(bottomImages.current[2], {
+        x: '50%',
+        delay: 3,
+        duration: 1.2,
+      })
+    }
   }, [])
 
   useEffect(() => {
@@ -152,10 +165,10 @@ const HomePage = () => {
   return (
     <>
       <WelcomeModal welcomeAnimated={welcomeAnimated} ref={welcomeModal}>
-        <WelcomeHeader darkMode={true}>
+        <WelcomeHeader darkMode>
           Witamy na stronie restauracji (Nazwa restauracji).
         </WelcomeHeader>
-        <WelcomeHeader darkMode={true}>
+        <WelcomeHeader darkMode>
           Zamów swoje ulubione posiłki za pomocą jedynie paru kliknięć!
         </WelcomeHeader>
       </WelcomeModal>

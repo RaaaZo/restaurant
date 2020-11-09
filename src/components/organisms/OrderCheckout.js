@@ -1,23 +1,23 @@
-import { Header } from "components/atoms/Header";
-import OrderedItem from "components/molecules/OrderedItem";
-import OrderSummary from "components/molecules/OrderSummary";
-import React from "react";
-import styled, { css } from "styled-components";
+import { Header } from 'components/atoms/Header'
+import OrderedItem from 'components/molecules/OrderedItem'
+import OrderSummary from 'components/molecules/OrderSummary'
+import React from 'react'
+import styled, { css } from 'styled-components'
 
 const DUMMY_DATA = [
   {
     id: 1,
     amount: 2,
-    dish: "Stek",
-    price: 120
+    dish: 'Stek',
+    price: 120,
   },
   {
     id: 2,
     amount: 1,
-    dish: "Burger",
-    price: 33
-  }
-];
+    dish: 'Burger',
+    price: 33,
+  },
+]
 
 const Wrapper = styled.div`
   width: 100%;
@@ -27,30 +27,24 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  ${({ darkMode }) =>
-    darkMode &&
-    css`
-      color: white;
-    `}
-`;
+`
 
 const StyledHeader = styled(Header)`
   margin: 20px;
-`;
+`
 
 const OrderCheckout = () => {
   // make an array of dishes prices which is passed to OrderSummary component
-  let prices = [];
+  let prices = []
   const flatPrices = () =>
     DUMMY_DATA.filter(({ price }) => {
-      if (typeof price !== "undefined") {
-        return prices.push(price);
+      if (typeof price !== 'undefined') {
+        return prices.push(price)
       } else {
-        return (prices = [0]);
+        return (prices = [0])
       }
-    });
-  flatPrices();
+    })
+  flatPrices()
 
   return (
     <Wrapper>
@@ -63,7 +57,7 @@ const OrderCheckout = () => {
       )}
       <OrderSummary priceAmount={prices} />
     </Wrapper>
-  );
-};
+  )
+}
 
-export default OrderCheckout;
+export default OrderCheckout

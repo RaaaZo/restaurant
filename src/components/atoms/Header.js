@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components'
 
 export const Header = styled.h1`
   font-size: ${({ theme: { fontSize } }) => fontSize.xl};
@@ -13,10 +13,4 @@ export const Header = styled.h1`
   @media (min-width: 768px) {
     font-size: ${({ theme: { fontSize } }) => fontSize.xxxxl};
   }
-
-  ${({ darkMode }) =>
-    darkMode &&
-    css`
-      color: #fff;
-    `}
-`;
+`

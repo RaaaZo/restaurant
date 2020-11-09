@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components'
 
 export const HamburgerMenu = styled.div`
   position: relative;
@@ -9,23 +9,17 @@ export const HamburgerMenu = styled.div`
   transition: 0.4s ease-in-out;
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     bottom: 7px;
     width: 40px;
     height: 3px;
     background-color: ${({ theme }) => theme.navigationDark};
     transition: 0.4s ease-in-out;
-
-    ${({ darkMode }) =>
-      darkMode &&
-      css`
-        background-color: ${({ theme }) => theme.accentsDark};
-      `}
   }
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     margin-left: 15px;
     bottom: -7px;
@@ -33,35 +27,23 @@ export const HamburgerMenu = styled.div`
     height: 3px;
     background-color: ${({ theme }) => theme.navigationDark};
     transition: 0.4s ease-in-out;
-
-    ${({ darkMode }) =>
-      darkMode &&
-      css`
-        background-color: ${({ theme }) => theme.accentsDark};
-      `}
   }
-
-  ${({ darkMode }) =>
-    darkMode &&
-    css`
-      background-color: ${({ theme }) => theme.accentsDark};
-    `}
 
   ${({ isOpen }) =>
     isOpen &&
     css`
       background-color: transparent;
       &::before {
-        content: "";
+        content: '';
         transform: translateY(7px) rotate(45deg);
         background-color: #fff;
       }
       &::after {
-        content: "";
+        content: '';
         width: 40px;
         margin-left: 0;
         transform: translateY(-7px) rotate(-45deg);
         background-color: #fff;
       }
     `}
-`;
+`

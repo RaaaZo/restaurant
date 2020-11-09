@@ -1,5 +1,5 @@
-import React from "react";
-import styled, { css } from "styled-components";
+import React from 'react'
+import styled, { css } from 'styled-components'
 
 const Wrapper = styled.div`
   display: flex;
@@ -9,13 +9,7 @@ const Wrapper = styled.div`
   height: 30px;
   margin-top: 40px;
   background-color: ${({ theme }) => theme.navigationLight};
-
-  ${({ darkMode }) =>
-    darkMode &&
-    css`
-      background-color: ${({ theme }) => theme.navigationDark};
-    `}
-`;
+`
 
 const StyledLink = styled.a`
   margin: 0 auto;
@@ -27,26 +21,16 @@ const StyledLink = styled.a`
   @media (min-width: 768px) {
     font-size: ${({ theme }) => theme.fontSize.xl};
   }
-
-  ${({ darkMode }) =>
-    darkMode &&
-    css`
-      color: #fff;
-    `}
-`;
+`
 
 const Footer = () => {
   return (
-    <Wrapper darkMode={false}>
-      <StyledLink
-        darkMode={false}
-        href="https://github.com/RaaaZo"
-        target="_blank"
-      >
+    <Wrapper>
+      <StyledLink href='https://github.com/RaaaZo' target='_blank'>
         Mateusz Koprowicz©
       </StyledLink>
     </Wrapper>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer
