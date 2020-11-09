@@ -6,8 +6,7 @@ import { Header } from "components/atoms/Header";
 
 const Wrapper = styled.div`
   width: 100%;
-  margin: 10px;
-  padding: 10px;
+  margin: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;

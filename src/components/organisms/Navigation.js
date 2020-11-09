@@ -147,7 +147,7 @@ const Navigation = () => {
             to="/auth"
             activeClassName="isActive"
           >
-            Logowanie
+            Rejestracja
           </ListItem>
         </List>
 

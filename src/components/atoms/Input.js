@@ -1,7 +1,8 @@
+import { Field } from "formik";
 import styled, { css } from "styled-components";
 
-export const Input = styled.input`
-  width: 70%;
+export const Input = styled(Field)`
+  width: 100%;
   max-width: 500px;
   margin: 0 auto;
   padding: 5px 0;
@@ -10,11 +11,13 @@ export const Input = styled.input`
   text-align: center;
   border: 2px solid ${({ theme }) => theme.accentsLight};
   border-radius: 15px;
-  outline-color: ${({ theme }) => theme.accentsLight};
-  transition: background-color 0.4s ease-in-out;
+  transition: background-color 0.4s ease-in-out, border-color 0.4s ease-in-out,
+    box-shadow 0.4s ease-in-out;
 
   &:focus {
     background-color: white;
+    border-color: #121212;
+    box-shadow: 0 0 3pt 2pt #121212;
   }
 
   @media (min-width: 410px) {

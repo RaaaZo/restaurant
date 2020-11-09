@@ -176,7 +176,7 @@ const NavigationModal = ({ isOpen, closeModal }) => {
             activeClassName="isActive"
             onClick={closeModal}
           >
-            Logowanie
+            Rejestracja
           </ListItem>
         </List>
       </Modal>

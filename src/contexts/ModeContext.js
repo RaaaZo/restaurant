@@ -1,17 +1,17 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState } from 'react'
 
-export const ModeContext = createContext();
+export const ModeContext = createContext()
 
 const ModeContextProvider = ({ children }) => {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(false)
 
-  const handleMode = () => setDarkMode(!darkMode);
+  const handleMode = () => setDarkMode(!darkMode)
 
   return (
     <ModeContext.Provider value={{ darkMode, handleMode }}>
       {children}
     </ModeContext.Provider>
-  );
-};
+  )
+}
 
-export default ModeContextProvider;
+export default ModeContextProvider

@@ -57,7 +57,7 @@ const MenuItemCard = () => {
       <Wrapper>
         <StyledHeader>Nazwa dania</StyledHeader>
         <ImageComponent
-          src="https://cdn.pixabay.com/photo/2018/08/29/19/03/steak-3640560_960_720.jpg"
+          url="https://cdn.pixabay.com/photo/2018/08/29/19/03/steak-3640560_960_720.jpg"
           alt=""
         />
         <StyledParagraph>

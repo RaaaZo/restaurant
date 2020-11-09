@@ -22,6 +22,7 @@ const DUMMY_DATA = [
 const Wrapper = styled.div`
   width: 100%;
   max-width: 500px;
+  padding: 0 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -39,12 +40,12 @@ const StyledHeader = styled(Header)`
 `;
 
 const OrderCheckout = () => {
-  // make an array of dishes prices
+  // make an array of dishes prices which is passed to OrderSummary component
   let prices = [];
   const flatPrices = () =>
     DUMMY_DATA.filter(({ price }) => {
       if (typeof price !== "undefined") {
-        prices.push(price);
+        return prices.push(price);
       } else {
         return (prices = [0]);
       }

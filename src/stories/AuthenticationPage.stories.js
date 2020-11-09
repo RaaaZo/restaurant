@@ -1,11 +1,11 @@
 import React from "react";
-import HomePage from "pages/HomePage";
+import AuthenticationPage from "pages/AuthenticationPage";
 import Navigation from "components/organisms/Navigation";
 import Footer from "components/organisms/Footer";
 
 export default {
-  title: "pages/HomePage",
-  component: HomePage,
+  title: "pages/AuthenticationPage",
+  component: AuthenticationPage,
   decorators: [
     Story => (
       <>
@@ -17,4 +17,4 @@ export default {
   ]
 };
 
-export const LightMode = () => <HomePage />;
+export const LightMode = () => <AuthenticationPage />;

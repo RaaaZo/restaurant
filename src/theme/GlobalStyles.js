@@ -14,7 +14,7 @@ const GlobalStyle = createGlobalStyle`
       font-size: 62.5%;
     }
 
-   h1, h2, h3, a, button {
+   h1, h2, h3, a, button, label, input {
       font-family: 'Yanone Kaffeesatz', sans-serif; 
       font-weight: 700;
     }

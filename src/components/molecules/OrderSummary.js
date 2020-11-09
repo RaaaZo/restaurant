@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  margin: 10px;
   border-top: 2px solid ${({ theme }) => theme.backgroundDark};
 
   ${({ darkMode }) =>
@@ -28,6 +28,7 @@ const StyledButton = styled(Button)`
 const OrderSummary = ({ priceAmount }) => {
   let amount;
   const deliveryPrice = 10;
+
   if (priceAmount.length !== 0) {
     amount = priceAmount.reduce((total, amount) => total + amount);
   }
@@ -50,7 +51,11 @@ const OrderSummary = ({ priceAmount }) => {
 };
 
 OrderSummary.propTypes = {
-  priceAmount: PropTypes.array.isRequired
+  priceAmount: PropTypes.array
+};
+
+OrderSummary.defaultProps = {
+  priceAmount: [0, 0]
 };
 
 export default OrderSummary;

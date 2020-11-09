@@ -1,7 +1,7 @@
 import React from "react";
 import StyleTemplate from "templates/StyleTemplate";
 import ModeContextProvider from "contexts/ModeContext";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import HomePage from "pages/HomePage";
 import MenuPage from "pages/MenuPage";
 import AppetizersPage from "pages/AppetizersPage";
@@ -13,10 +13,13 @@ import ContactPage from "pages/ContactPage";
 import CartPage from "pages/CartPage";
 import AuthenticationPage from "pages/AuthenticationPage";
 import Navigation from "components/organisms/Navigation";
+import Footer from "components/organisms/Footer";
+import ScrollToTop from "hooks/ScrollToTop";
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <ModeContextProvider>
         <StyleTemplate>
           <Navigation />
@@ -33,6 +36,7 @@ function App() {
             <Route exact path="/cart" component={CartPage} />
             <Route exact path="/auth" component={AuthenticationPage} />
           </Switch>
+          <Footer />
         </StyleTemplate>
       </ModeContextProvider>
     </Router>

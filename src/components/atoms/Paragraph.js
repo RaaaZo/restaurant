@@ -13,10 +13,6 @@ export const Paragraph = styled.p`
     font-size: ${({ theme: { fontSize } }) => fontSize.xl};
   }
 
-  @media (min-width: 1024px) {
-    font-size: ${({ theme: { fontSize } }) => fontSize.xxl};
-  }
-
   ${({ darkMode }) =>
     darkMode &&
     css`

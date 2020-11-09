@@ -11,8 +11,8 @@ export const Button = styled.button`
   transition: background-color 0.4s ease-in-out, border-color 0.4s ease-in-out;
 
   &:hover {
-    background-color: ${({ theme }) => theme.accentsDark};
-    border-color: ${({ theme }) => theme.accentsLight};
+    background-color: ${({ theme }) => theme.backgroundLight};
+    border-color: ${({ theme }) => theme.navigationDark};
   }
 
   @media (min-width: 410px) {

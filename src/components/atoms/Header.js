@@ -11,7 +11,7 @@ export const Header = styled.h1`
   }
 
   @media (min-width: 768px) {
-    font-size: ${({ theme: { fontSize } }) => fontSize.xxxl};
+    font-size: ${({ theme: { fontSize } }) => fontSize.xxxxl};
   }
 
   ${({ darkMode }) =>

@@ -1,6 +1,6 @@
 export const MainTheme = {
   backgroundLight: "#F2F3FB",
-  backgroundDark: "#3C3C3C",
+  backgroundDark: "#3A3A3A",
   accentsDark: "#00C896",
   accentsLight: "#25C685",
   navigationLight: "#00C896",
