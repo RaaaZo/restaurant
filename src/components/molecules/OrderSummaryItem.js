@@ -1,8 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import PropTypes from "prop-types";
-import { Header } from "components/atoms/Header";
-import { Paragraph } from "components/atoms/Paragraph";
+import React from 'react'
+import styled from 'styled-components'
+import PropTypes from 'prop-types'
+import { Paragraph } from 'components/atoms/Paragraph'
 
 const InnerWrapper = styled.div`
   width: 100%;
@@ -14,7 +13,7 @@ const InnerWrapper = styled.div`
   &:first-of-type {
     margin-top: 40px;
   }
-`;
+`
 
 const StyledParagraph = styled(Paragraph)`
   font-size: ${({ theme: { fontSize } }) => fontSize.l};
@@ -23,7 +22,7 @@ const StyledParagraph = styled(Paragraph)`
   @media (min-width: 768px) {
     font-size: ${({ theme: { fontSize } }) => fontSize.xxl};
   }
-`;
+`
 
 const OrderSummaryItem = ({ title, price }) => {
   return (
@@ -33,12 +32,12 @@ const OrderSummaryItem = ({ title, price }) => {
         <StyledParagraph>{price} zł</StyledParagraph>
       </InnerWrapper>
     </>
-  );
-};
+  )
+}
 
 OrderSummaryItem.propTypes = {
   title: PropTypes.string,
-  price: PropTypes.string
-};
+  price: PropTypes.string,
+}
 
-export default OrderSummaryItem;
+export default OrderSummaryItem

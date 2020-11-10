@@ -43,6 +43,7 @@ const Backdrop = styled.div`
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   transition: transform 0.35s ease-in-out;
+  z-index: 10;
 
   ${({ isOpen }) =>
     isOpen &&

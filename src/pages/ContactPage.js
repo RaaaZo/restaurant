@@ -1,63 +1,35 @@
-import { Header } from "components/atoms/Header";
-import { HeroImage } from "components/atoms/HeroImage";
-import { PagesWrapper } from "components/atoms/PagesWrapper";
-import { Paragraph } from "components/atoms/Paragraph";
-import React from "react";
-import styled, { css } from "styled-components";
+import { Header } from 'components/atoms/Header'
+import { HeroImage } from 'components/atoms/HeroImage'
+import { PagesWrapper } from 'components/atoms/PagesWrapper'
+import { Paragraph } from 'components/atoms/Paragraph'
+import { SectionsImage } from 'components/atoms/SectionsImage'
+import React from 'react'
+import styled from 'styled-components'
 
 const InnerWrapper = styled.div`
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
-
-const ComponentsWrapper = styled.div`
-  width: 100%;
-  max-width: 1280px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  margin: 0 auto;
-  margin-bottom: 60px;
-
-  @media (min-width: 1024px) {
-    flex-direction: row;
-    align-items: flex-start;
-  }
-`;
+`
 
 const StyledHeader = styled(Header)`
-  margin: 20px auto 10px auto;
-
-  ${({ bottomHeader }) =>
-    bottomHeader &&
-    css`
-      font-size: ${({ theme: { fontSize } }) => fontSize.l};
-
-      @media (min-width: 768px) {
-        font-size: ${({ theme: { fontSize } }) => fontSize.xl};
-      }
-    `}
-
-  ${({ topHeader }) =>
-    topHeader &&
-    css`
-      margin: 50px;
-    `}
-`;
+  color: ${({ pageHeader }) => (pageHeader ? `#000` : `#fff`)};
+  font-size: ${({ pageHeader, theme: { fontSize } }) =>
+    pageHeader ? fontSize.xxxxl : fontSize.xxl};
+  margin: ${({ pageHeader }) => pageHeader && `30px`};
+`
 
 const StyledParagraph = styled(Paragraph)`
-  margin: 10px;
   color: ${({ theme }) => theme.accentsDark};
   font-size: ${({ theme: { fontSize } }) => fontSize.l};
 
   @media (min-width: 768px) {
     font-size: ${({ theme: { fontSize } }) => fontSize.xl};
   }
-`;
+`
 
 const GoogleMaps = styled.div`
   width: 100%;
@@ -70,69 +42,91 @@ const GoogleMaps = styled.div`
     max-width: 600px;
     height: 300px;
   }
-`;
+`
 
-const List = styled.ul`
-  width: 100%;
+const TextWrapper = styled.div`
+  width: 60%;
+  height: 40%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
+  background-color: rgb(0, 0, 0, 0.7);
+  border-radius: 25px;
+`
 
-const StyledSpan = styled.span`
-  color: ${({ theme }) => theme.accentsDark};
-`;
+const ContentWrapper = styled.div`
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+`
 
 const ContactPage = () => {
   return (
     <PagesWrapper>
-      <HeroImage src="https://cdn.pixabay.com/photo/2016/11/29/12/54/bar-1869656_960_720.jpg" />
-      <StyledHeader topHeader={true}>Kontakt</StyledHeader>
-      <ComponentsWrapper>
-        <InnerWrapper>
-          <StyledHeader bottomHeader={true}>Telefon:</StyledHeader>
-          <StyledParagraph>123456789</StyledParagraph>
-        </InnerWrapper>
+      <HeroImage src='https://cdn.pixabay.com/photo/2016/11/29/12/54/bar-1869656_960_720.jpg' />
+      <ContentWrapper>
+        <StyledHeader pageHeader>Kontakt</StyledHeader>
 
-        <InnerWrapper>
-          <StyledHeader bottomHeader={true}>E-mail:</StyledHeader>
-          <StyledParagraph>restaurant@test.com</StyledParagraph>
-        </InnerWrapper>
+        <Paragraph>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse sed,
+          necessitatibus vero ex fuga, consectetur quod laborum illum dolorem
+          placeat saepe nihil ratione debitis adipisci sapiente. Nihil
+          voluptatum quae perspiciatis?
+        </Paragraph>
 
-        <InnerWrapper>
-          <StyledHeader bottomHeader={true}>Godziny otwarcia:</StyledHeader>
-          <List>
-            <li>
-              Poniedziałek: <StyledSpan>12-20</StyledSpan>
-            </li>
-            <li>
-              Wtorek: <StyledSpan> 10-18</StyledSpan>
-            </li>
-            <li>
-              Środa: <StyledSpan> 10-18</StyledSpan>
-            </li>
-            <li>
-              Czwartek: <StyledSpan> 10-18</StyledSpan>
-            </li>
-            <li>
-              Piątek: <StyledSpan> 12-22</StyledSpan>
-            </li>
-            <li>
-              Sobota: <StyledSpan> 10-22</StyledSpan>
-            </li>
-            <li>
-              Niedziela: <StyledSpan> 12-20</StyledSpan>
-            </li>
-          </List>
-        </InnerWrapper>
-      </ComponentsWrapper>
+        <SectionsImage
+          url={`https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260`}
+        >
+          <InnerWrapper>
+            <TextWrapper>
+              <StyledHeader>Phone:</StyledHeader>
+              <StyledParagraph>123456789</StyledParagraph>
+            </TextWrapper>
+          </InnerWrapper>
+        </SectionsImage>
 
-      <StyledHeader bottomHeader={true}>Lokalizacja:</StyledHeader>
-      <StyledParagraph>adres</StyledParagraph>
+        <Paragraph>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse sed,
+          necessitatibus vero ex fuga, consectetur quod laborum illum dolorem
+          placeat saepe nihil ratione debitis adipisci sapiente. Nihil
+          voluptatum quae perspiciatis?
+        </Paragraph>
+
+        <SectionsImage
+          url={`https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260`}
+        >
+          <InnerWrapper>
+            <TextWrapper>
+              <StyledHeader>E-mail:</StyledHeader>
+              <StyledParagraph>restaurant@test.com</StyledParagraph>
+            </TextWrapper>
+          </InnerWrapper>
+        </SectionsImage>
+
+        <Paragraph>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse sed,
+          necessitatibus vero ex fuga, consectetur quod laborum illum dolorem
+          placeat saepe nihil ratione debitis adipisci sapiente. Nihil
+          voluptatum quae perspiciatis?
+        </Paragraph>
+
+        <SectionsImage
+          url={`https://images.pexels.com/photos/1036857/pexels-photo-1036857.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260`}
+        >
+          <InnerWrapper>
+            <TextWrapper>
+              <StyledHeader>Godziny otwarcia:</StyledHeader>
+              <StyledParagraph>Pon-Czw: 12-23</StyledParagraph>
+              <StyledParagraph>Pt-Niedz: 12-24</StyledParagraph>
+            </TextWrapper>
+          </InnerWrapper>
+        </SectionsImage>
+      </ContentWrapper>
+      <StyledHeader pageHeader>Mapa:</StyledHeader>
       <GoogleMaps />
     </PagesWrapper>
-  );
-};
+  )
+}
 
-export default ContactPage;
+export default ContactPage

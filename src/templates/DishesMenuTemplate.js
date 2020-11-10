@@ -1,12 +1,14 @@
-import React from "react";
-import styled from "styled-components";
-import PropTypes from "prop-types";
+import React from 'react'
+import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
-import { Header } from "components/atoms/Header";
-import { HeroImage } from "components/atoms/HeroImage";
-import { PagesWrapper } from "components/atoms/PagesWrapper";
-import DishCard from "components/organisms/DishCard";
-import { Paragraph } from "components/atoms/Paragraph";
+import { Header } from 'components/atoms/Header'
+import { HeroImage } from 'components/atoms/HeroImage'
+import { PagesWrapper } from 'components/atoms/PagesWrapper'
+import DishCard from 'components/organisms/DishCard'
+import { Paragraph } from 'components/atoms/Paragraph'
+import { SectionsImage } from 'components/atoms/SectionsImage'
+import LoadingSpinner from 'components/utils/LoadingSpinner'
 
 const DishCardsWrapper = styled.div`
   width: 100%;
@@ -21,52 +23,62 @@ const DishCardsWrapper = styled.div`
   @media (min-width: 1024px) {
     flex-flow: row wrap;
   }
-`;
+`
 
 const InnerWrapper = styled.div`
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
-`;
+`
 
 const StyledHeader = styled(Header)`
   margin: 20px auto;
   padding: 0 10px;
-`;
+`
 
 const StyledParagraph = styled(Paragraph)`
   margin: 30px auto;
   padding: 0 10px;
-`;
+`
 
 const DishesMenuTemplate = ({
   data,
   headerText,
   paragraphTopText,
-  paragraphBottomText
+  paragraphBottomText,
+  isLoading,
+  error,
 }) => {
   return (
     <PagesWrapper>
-      <HeroImage src="https://cdn.pixabay.com/photo/2018/07/23/17/05/noodles-3557358_960_720.jpg" />
+      <HeroImage src='https://cdn.pixabay.com/photo/2018/07/23/17/05/noodles-3557358_960_720.jpg' />
       <InnerWrapper>
         <StyledHeader>{headerText}</StyledHeader>
         <StyledParagraph>{paragraphTopText}</StyledParagraph>
+        <SectionsImage
+          url={`https://cdn.pixabay.com/photo/2018/08/29/19/03/steak-3640560_960_720.jpg`}
+        />
+
         <DishCardsWrapper>
-          {data.map(({ id, name, desc, img }) => (
-            <DishCard key={id} name={name} desc={desc} img={img} />
-          ))}
+          {isLoading ? (
+            <LoadingSpinner />
+          ) : (
+            data.map(({ _id, name, description, image }) => (
+              <DishCard key={_id} name={name} desc={description} img={image} />
+            ))
+          )}
         </DishCardsWrapper>
         <StyledParagraph>{paragraphBottomText}</StyledParagraph>
       </InnerWrapper>
     </PagesWrapper>
-  );
-};
+  )
+}
 
 DishesMenuTemplate.propTypes = {
-  data: PropTypes.array.isRequired,
+  data: PropTypes.array,
   headerText: PropTypes.string.isRequired,
   paragraphTopText: PropTypes.string.isRequired,
-  paragraphBottomText: PropTypes.string.isRequired
-};
+  paragraphBottomText: PropTypes.string.isRequired,
+}
 
-export default DishesMenuTemplate;
+export default DishesMenuTemplate

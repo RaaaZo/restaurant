@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -13,7 +13,8 @@ gsap.registerPlugin(ScrollTrigger)
 const Wrapper = styled.div`
   width: 100%;
   max-width: 500px;
-  height: 600px;
+  min-height: 500px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -40,7 +41,7 @@ const StyledParagraph = styled(Paragraph)`
 `
 
 const StyledButton = styled(Button)`
-  margin-bottom: 20px;
+  margin: 20px;
 `
 
 const DishCard = ({ name, desc, img }) => {

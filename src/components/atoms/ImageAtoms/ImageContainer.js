@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components'
 
 export const ImageContainer = styled.div`
   position: relative;
@@ -27,4 +27,4 @@ export const ImageContainer = styled.div`
         }
       `}
   }
-`;
+`

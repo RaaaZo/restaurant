@@ -2,7 +2,7 @@ import { Header } from 'components/atoms/Header'
 import OrderedItem from 'components/molecules/OrderedItem'
 import OrderSummary from 'components/molecules/OrderSummary'
 import React from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 const DUMMY_DATA = [
   {

@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 export const Header = styled.h1`
   font-size: ${({ theme: { fontSize } }) => fontSize.xl};

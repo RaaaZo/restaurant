@@ -1,6 +1,6 @@
 import React from 'react'
 import { ReactComponent as ArrowSvg } from 'assets/svg/arrow-up.svg'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 const StyledSvg = styled(ArrowSvg)`
   width: 40px;
