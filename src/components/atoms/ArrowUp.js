@@ -8,8 +8,10 @@ const StyledSvg = styled(ArrowSvg)`
   position: fixed;
   bottom: 5%;
   right: 0;
+  background-color: rgb(255, 255, 255, 0.7);
   cursor: pointer;
   z-index: 10;
+  border-radius: 50%;
 
   @media (min-width: 768px) {
     width: 50px;

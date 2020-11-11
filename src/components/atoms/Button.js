@@ -4,7 +4,7 @@ export const Button = styled.button`
   width: 200px;
   padding: 10px 0;
   font-size: ${({ theme }) => theme.fontSize.l};
-  background-color: ${({ theme }) => theme.accentsLight};
+  background-color: ${({ theme }) => theme.accentsDark};
   border: 2px solid ${({ theme }) => theme.accentsDark};
   border-radius: 15px;
   cursor: pointer;

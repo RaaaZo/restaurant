@@ -12,7 +12,13 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   margin: 10px;
-  border-top: 2px solid ${({ theme }) => theme.backgroundDark};
+  border: 2px solid ${({ theme }) => theme.backgroundDark};
+  padding: 20px;
+
+  @media (min-width: 1024px) {
+    width: 50%;
+    align-self: flex-start;
+  }
 `
 
 const StyledButton = styled(Button)`

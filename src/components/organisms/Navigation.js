@@ -104,16 +104,16 @@ const Navigation = () => {
             Menu
           </ListItem>
 
-          <ListItem exact to='/contact' activeClassName='isActive'>
-            Kontakt
-          </ListItem>
-
           <ListItem exact to='/cart' activeClassName='isActive'>
             Zamówienie
           </ListItem>
 
           <ListItem exact to='/auth' activeClassName='isActive'>
             Rejestracja
+          </ListItem>
+
+          <ListItem exact to='/contact' activeClassName='isActive'>
+            Kontakt
           </ListItem>
         </List>
 

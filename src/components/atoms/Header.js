@@ -5,6 +5,7 @@ export const Header = styled.h1`
   font-weight: 700;
   text-align: center;
   text-align-last: center;
+  margin-top: 50px;
 
   @media (min-width: 410px) {
     font-size: ${({ theme: { fontSize } }) => fontSize.xxl};

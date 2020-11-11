@@ -41,6 +41,14 @@ const StyledParagraph = styled(Paragraph)`
   padding: 0 10px;
 `
 
+const ErrorWrapper = styled.div`
+  width: 100%;
+  min-height: 83vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
 const DishesMenuTemplate = ({
   data,
   headerText,
@@ -49,28 +57,46 @@ const DishesMenuTemplate = ({
   isLoading,
   error,
 }) => {
-  return (
-    <PagesWrapper>
-      <HeroImage src='https://cdn.pixabay.com/photo/2018/07/23/17/05/noodles-3557358_960_720.jpg' />
-      <InnerWrapper>
-        <StyledHeader>{headerText}</StyledHeader>
-        <StyledParagraph>{paragraphTopText}</StyledParagraph>
-        <SectionsImage
-          url={`https://cdn.pixabay.com/photo/2018/08/29/19/03/steak-3640560_960_720.jpg`}
-        />
+  if (!isLoading && error) {
+    return (
+      <ErrorWrapper>
+        <Paragraph>{error}</Paragraph>
+      </ErrorWrapper>
+    )
+  }
 
-        <DishCardsWrapper>
-          {isLoading ? (
-            <LoadingSpinner />
-          ) : (
-            data.map(({ _id, name, description, image }) => (
-              <DishCard key={_id} name={name} desc={description} img={image} />
-            ))
-          )}
-        </DishCardsWrapper>
-        <StyledParagraph>{paragraphBottomText}</StyledParagraph>
-      </InnerWrapper>
-    </PagesWrapper>
+  return (
+    <>
+      {isLoading ? (
+        <ErrorWrapper>
+          <LoadingSpinner />
+        </ErrorWrapper>
+      ) : (
+        <PagesWrapper>
+          <HeroImage src='https://cdn.pixabay.com/photo/2018/07/23/17/05/noodles-3557358_960_720.jpg' />
+          <InnerWrapper>
+            <StyledHeader>{headerText}</StyledHeader>
+            <StyledParagraph>{paragraphTopText}</StyledParagraph>
+            <SectionsImage
+              url={`https://cdn.pixabay.com/photo/2018/08/29/19/03/steak-3640560_960_720.jpg`}
+            />
+            <DishCardsWrapper>
+              {data.map(({ _id, name, description, image }) => (
+                <DishCard
+                  key={_id}
+                  name={name}
+                  desc={description}
+                  img={image}
+                />
+              ))}
+            </DishCardsWrapper>
+
+            <DishCardsWrapper></DishCardsWrapper>
+            <StyledParagraph>{paragraphBottomText}</StyledParagraph>
+          </InnerWrapper>
+        </PagesWrapper>
+      )}
+    </>
   )
 }
 

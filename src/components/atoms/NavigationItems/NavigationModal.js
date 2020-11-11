@@ -130,20 +130,10 @@ const NavigationModal = ({ isOpen, closeModal }) => {
 
           <ListItem
             exact
-            to='/contact'
-            activeClassName='isActive'
-            onClick={closeModal}
-          >
-            Kontakt
-          </ListItem>
-
-          <ListItem
-            exact
             to='/cart'
             activeClassName='isActive'
             onClick={closeModal}
           >
-            {/* cart svg */}
             Zamówienie
           </ListItem>
 
@@ -154,6 +144,15 @@ const NavigationModal = ({ isOpen, closeModal }) => {
             onClick={closeModal}
           >
             Rejestracja
+          </ListItem>
+
+          <ListItem
+            exact
+            to='/contact'
+            activeClassName='isActive'
+            onClick={closeModal}
+          >
+            Kontakt
           </ListItem>
         </List>
       </Modal>

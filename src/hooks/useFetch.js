@@ -4,7 +4,7 @@ import Axios from 'axios'
 export const useFetch = (url) => {
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState()
-  const [error, setError] = useState('')
+  const [error, setError] = useState()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,8 +16,8 @@ export const useFetch = (url) => {
         setData(data)
         setLoading(false)
       } catch (err) {
-        setLoading(false)
         setError(err.response.data.message)
+        setLoading(false)
       }
     }
 

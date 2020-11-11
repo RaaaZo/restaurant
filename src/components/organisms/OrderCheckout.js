@@ -9,13 +9,17 @@ const DUMMY_DATA = [
     id: 1,
     amount: 2,
     dish: 'Stek',
-    price: 120,
+    price: 70,
+    image:
+      'https://cdn.pixabay.com/photo/2017/11/10/15/04/steak-2936531_960_720.jpg',
   },
   {
     id: 2,
     amount: 1,
     dish: 'Burger',
     price: 33,
+    image:
+      'https://cdn.pixabay.com/photo/2017/11/10/15/04/steak-2936531_960_720.jpg',
   },
 ]
 
@@ -23,6 +27,18 @@ const Wrapper = styled.div`
   width: 100%;
   max-width: 500px;
   padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @media (min-width: 1024px) {
+    max-width: 1280px;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+`
+const ItemWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -38,7 +54,7 @@ const OrderCheckout = () => {
   let prices = []
   const flatPrices = () =>
     DUMMY_DATA.filter(({ price }) => {
-      if (typeof price !== 'undefined') {
+      if (price) {
         return prices.push(price)
       } else {
         return (prices = [0])
@@ -48,13 +64,22 @@ const OrderCheckout = () => {
 
   return (
     <Wrapper>
-      {DUMMY_DATA.length !== 0 ? (
-        DUMMY_DATA.map(({ id, amount, dish, price }) => (
-          <OrderedItem key={id} amount={amount} dish={dish} price={price} />
-        ))
-      ) : (
-        <StyledHeader>Nie ma żadnych dań w koszyku</StyledHeader>
-      )}
+      <ItemWrapper>
+        {DUMMY_DATA.length !== 0 ? (
+          DUMMY_DATA.map(({ id, amount, dish, price, image }) => (
+            <OrderedItem
+              key={id}
+              image={image}
+              amount={amount}
+              dish={dish}
+              price={price}
+            />
+          ))
+        ) : (
+          <StyledHeader>Nie ma żadnych dań w koszyku</StyledHeader>
+        )}
+      </ItemWrapper>
+
       <OrderSummary priceAmount={prices} />
     </Wrapper>
   )

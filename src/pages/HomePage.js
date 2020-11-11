@@ -60,12 +60,6 @@ const StyledHeader = styled(Header)`
     width: 100%;
     height: 3px;
     background-color: ${({ theme }) => theme.backgroundDark};
-
-    ${({ darkMode }) =>
-      darkMode &&
-      css`
-        background-color: ${({ theme }) => theme.accentsDark};
-      `}
   }
 `
 
@@ -165,10 +159,10 @@ const HomePage = () => {
   return (
     <>
       <WelcomeModal welcomeAnimated={welcomeAnimated} ref={welcomeModal}>
-        <WelcomeHeader darkMode>
+        <WelcomeHeader>
           Witamy na stronie restauracji (Nazwa restauracji).
         </WelcomeHeader>
-        <WelcomeHeader darkMode>
+        <WelcomeHeader>
           Zamów swoje ulubione posiłki za pomocą jedynie paru kliknięć!
         </WelcomeHeader>
       </WelcomeModal>
