@@ -1,9 +1,11 @@
+import React from 'react'
+import styled from 'styled-components'
+import OrderCheckout from 'components/organisms/OrderCheckout'
 import { Header } from 'components/atoms/Header'
 import { HeroImage } from 'components/atoms/HeroImage'
 import { PagesWrapper } from 'components/atoms/PagesWrapper'
-import OrderCheckout from 'components/organisms/OrderCheckout'
-import React from 'react'
-import styled from 'styled-components'
+
+import orderHero from 'assets/img/hero_order-min.jpg'
 
 const StyledHeader = styled(Header)`
   position: relative;
@@ -30,7 +32,10 @@ const InnerWrapper = styled.div`
 const CartPage = () => {
   return (
     <PagesWrapper>
-      <HeroImage src='https://cdn.pixabay.com/photo/2014/05/30/07/23/pizza-boxes-358029_960_720.jpg' />
+      <HeroImage
+        src={orderHero}
+        alt='Order hero image at the top of the page'
+      />
       <InnerWrapper>
         <StyledHeader>Twoje zamówienie:</StyledHeader>
       </InnerWrapper>

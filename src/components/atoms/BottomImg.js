@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components'
 
 export const BottomImage = styled.img`
   width: 80%;
@@ -16,6 +16,15 @@ export const BottomImage = styled.img`
     width: 60%;
   }
 
+ ${({ homeBottomImages }) =>
+   homeBottomImages &&
+   css`
+     @media (min-width: 1280px) {
+       width: 35%;
+       height: 80%;
+     }
+   `}
+
   ${({ secondImage }) =>
     secondImage &&
     css`
@@ -26,4 +35,4 @@ export const BottomImage = styled.img`
     css`
       transform: translate(-50%, -50%) rotate(-7deg);
     `}
-`;
+`

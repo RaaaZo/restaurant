@@ -20,6 +20,8 @@ const MainCoursesPage = () => {
       headerText='Dania główne'
       paragraphTopText={paragraphTopText}
       paragraphBottomText={paragraphBottomText}
+      heroImage='https://images.pexels.com/photos/2983101/pexels-photo-2983101.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+      sectionImage='https://images.pexels.com/photos/262897/pexels-photo-262897.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
     />
   )
 }

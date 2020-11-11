@@ -1,10 +1,12 @@
 import { Header } from 'components/atoms/Header'
+import React from 'react'
+import styled from 'styled-components'
 import { HeroImage } from 'components/atoms/HeroImage'
 import { PagesWrapper } from 'components/atoms/PagesWrapper'
 import { Paragraph } from 'components/atoms/Paragraph'
 import { SectionsImage } from 'components/atoms/SectionsImage'
-import React from 'react'
-import styled from 'styled-components'
+
+import contactHero from 'assets/img/hero_contact-min.jpg'
 
 const InnerWrapper = styled.div`
   width: 100%;
@@ -13,20 +15,26 @@ const InnerWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: rgb(0, 0, 0, 0.6);
 `
 
 const StyledHeader = styled(Header)`
   color: ${({ pageHeader }) => (pageHeader ? `#000` : `#fff`)};
   font-size: ${({ pageHeader, theme: { fontSize } }) =>
-    pageHeader ? fontSize.xxxxl : fontSize.xxl};
+    pageHeader ? fontSize.xxxxl : fontSize.xxxl};
+  margin-bottom: 20px;
+
+  @media (min-width: 1360px) {
+    font-size: ${({ theme: { fontSize } }) => fontSize.xxxxl};
+  }
 `
 
 const StyledInfoText = styled(Paragraph)`
   color: ${({ theme }) => theme.accentsDark};
-  font-size: ${({ theme: { fontSize } }) => fontSize.l};
+  font-size: ${({ theme: { fontSize } }) => fontSize.xl};
 
   @media (min-width: 768px) {
-    font-size: ${({ theme: { fontSize } }) => fontSize.xl};
+    font-size: ${({ theme: { fontSize } }) => fontSize.xxl};
   }
 `
 
@@ -40,17 +48,6 @@ const StyledParagraph = styled(Paragraph)`
   @media (min-width: 1024px) {
     margin: 100px auto;
   }
-`
-
-const TextWrapper = styled.div`
-  width: 60%;
-  height: 40%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(0, 0, 0, 0.7);
-  border-radius: 25px;
 `
 
 const ContentWrapper = styled.div`
@@ -69,7 +66,10 @@ const StyledIframe = styled.iframe`
 const ContactPage = () => {
   return (
     <PagesWrapper>
-      <HeroImage src='https://cdn.pixabay.com/photo/2016/11/29/12/54/bar-1869656_960_720.jpg' />
+      <HeroImage
+        src={contactHero}
+        alt='Contact hero image at the top of the page'
+      />
       <ContentWrapper>
         <StyledHeader pageHeader>Kontakt</StyledHeader>
 
@@ -84,10 +84,8 @@ const ContactPage = () => {
           url={`https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260`}
         >
           <InnerWrapper>
-            <TextWrapper>
-              <StyledHeader>Phone:</StyledHeader>
-              <StyledInfoText>123456789</StyledInfoText>
-            </TextWrapper>
+            <StyledHeader>Phone:</StyledHeader>
+            <StyledInfoText>123456789</StyledInfoText>
           </InnerWrapper>
         </SectionsImage>
 
@@ -102,10 +100,8 @@ const ContactPage = () => {
           url={`https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260`}
         >
           <InnerWrapper>
-            <TextWrapper>
-              <StyledHeader>E-mail:</StyledHeader>
-              <StyledInfoText>restaurant@test.com</StyledInfoText>
-            </TextWrapper>
+            <StyledHeader>E-mail:</StyledHeader>
+            <StyledInfoText>restaurant@test.com</StyledInfoText>
           </InnerWrapper>
         </SectionsImage>
 
@@ -120,11 +116,9 @@ const ContactPage = () => {
           url={`https://images.pexels.com/photos/1036857/pexels-photo-1036857.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260`}
         >
           <InnerWrapper>
-            <TextWrapper>
-              <StyledHeader>Godziny otwarcia:</StyledHeader>
-              <StyledInfoText>Pon-Czw: 12-23</StyledInfoText>
-              <StyledInfoText>Pt-Niedz: 12-24</StyledInfoText>
-            </TextWrapper>
+            <StyledHeader>Godziny otwarcia:</StyledHeader>
+            <StyledInfoText>Pon-Czw: 12-23</StyledInfoText>
+            <StyledInfoText>Pt-Niedz: 12-24</StyledInfoText>
           </InnerWrapper>
         </SectionsImage>
       </ContentWrapper>

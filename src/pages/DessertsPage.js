@@ -19,6 +19,8 @@ const DessertsPage = () => {
       headerText='Desery'
       paragraphTopText={paragraphTopText}
       paragraphBottomText={paragraphBottomText}
+      heroImage='https://images.pexels.com/photos/132694/pexels-photo-132694.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+      sectionImage='https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
     />
   )
 }

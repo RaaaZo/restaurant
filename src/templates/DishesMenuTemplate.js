@@ -56,6 +56,8 @@ const DishesMenuTemplate = ({
   paragraphBottomText,
   isLoading,
   error,
+  heroImage,
+  sectionImage,
 }) => {
   if (!isLoading && error) {
     return (
@@ -73,13 +75,11 @@ const DishesMenuTemplate = ({
         </ErrorWrapper>
       ) : (
         <PagesWrapper>
-          <HeroImage src='https://cdn.pixabay.com/photo/2018/07/23/17/05/noodles-3557358_960_720.jpg' />
+          <HeroImage src={heroImage} />
           <InnerWrapper>
             <StyledHeader>{headerText}</StyledHeader>
             <StyledParagraph>{paragraphTopText}</StyledParagraph>
-            <SectionsImage
-              url={`https://cdn.pixabay.com/photo/2018/08/29/19/03/steak-3640560_960_720.jpg`}
-            />
+            <SectionsImage url={sectionImage} />
             <DishCardsWrapper>
               {data.map(({ _id, name, description, image }) => (
                 <DishCard
@@ -91,7 +91,6 @@ const DishesMenuTemplate = ({
               ))}
             </DishCardsWrapper>
 
-            <DishCardsWrapper></DishCardsWrapper>
             <StyledParagraph>{paragraphBottomText}</StyledParagraph>
           </InnerWrapper>
         </PagesWrapper>

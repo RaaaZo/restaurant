@@ -21,6 +21,8 @@ const AppetizersPage = () => {
         headerText='Przystawki'
         paragraphTopText={paragraphTopText}
         paragraphBottomText={paragraphBottomText}
+        heroImage='https://images.pexels.com/photos/4087611/pexels-photo-4087611.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+        sectionImage='https://images.pexels.com/photos/1580467/pexels-photo-1580467.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
       />
     </>
   )

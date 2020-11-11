@@ -20,6 +20,8 @@ const SoupsPage = () => {
       headerText='Zupy'
       paragraphTopText={paragraphTopText}
       paragraphBottomText={paragraphBottomText}
+      heroImage='https://images.pexels.com/photos/262947/pexels-photo-262947.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+      sectionImage='https://images.pexels.com/photos/3662103/pexels-photo-3662103.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
     />
   )
 }

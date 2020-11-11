@@ -9,6 +9,8 @@ import { PagesWrapper } from 'components/atoms/PagesWrapper'
 import FormCell from 'components/molecules/FormCell'
 import { Form, Formik, ErrorMessage } from 'formik'
 
+import registerHero from 'assets/img/hero_register-min.jpg'
+
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
     .min(2, 'Conajmniej 2 znaki')
@@ -76,7 +78,10 @@ const AuthenticationPage = () => {
 
   return (
     <PagesWrapper>
-      <HeroImage src='https://cdn.pixabay.com/photo/2018/08/30/14/46/food-3642376_960_720.jpg' />
+      <HeroImage
+        src={registerHero}
+        alt='Authentication hero at the top of the page'
+      />
       {hasAccount ? (
         <>
           <StyledHeader>Zaloguj się!</StyledHeader>

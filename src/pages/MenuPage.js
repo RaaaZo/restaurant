@@ -1,16 +1,17 @@
+import React, { useRef } from 'react'
+import gsap from 'gsap'
+import styled from 'styled-components'
 import { Header } from 'components/atoms/Header'
 import { HeroImage } from 'components/atoms/HeroImage'
 import { PagesWrapper } from 'components/atoms/PagesWrapper'
 import { Paragraph } from 'components/atoms/Paragraph'
 import ImageComponent from 'components/molecules/ImageComponent'
-import React from 'react'
 import { useEffect } from 'react'
-import { useRef } from 'react'
-import styled from 'styled-components'
-import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { BottomImage } from 'components/atoms/BottomImg'
 import { PhotosWrapper } from 'components/atoms/PhotosWrapper'
+
+import menuHero from 'assets/img/hero_menu-min.jpg'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -19,29 +20,36 @@ const DUMMY_DATA = [
     id: 1,
     imageWithText: 'Przystawki',
     url:
-      'https://cdn.pixabay.com/photo/2017/03/10/06/20/bruschetta-2131893_960_720.jpg',
+      'https://images.pexels.com/photos/416471/pexels-photo-416471.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
     pathname: '/appetizers',
   },
   {
     id: 2,
     imageWithText: 'Zupy',
     url:
-      'https://cdn.pixabay.com/photo/2018/08/31/19/13/pumpkin-soup-3645375_960_720.jpg',
+      'https://images.pexels.com/photos/2591594/pexels-photo-2591594.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
     pathname: '/soups',
   },
   {
     id: 3,
     imageWithText: 'Dania główne',
     url:
-      'https://cdn.pixabay.com/photo/2018/08/29/19/03/steak-3640560_960_720.jpg',
+      'https://images.pexels.com/photos/410648/pexels-photo-410648.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
     pathname: '/main',
   },
   {
     id: 4,
     imageWithText: 'Sałatki',
     url:
-      'https://cdn.pixabay.com/photo/2017/03/10/06/20/bruschetta-2131893_960_720.jpg',
+      'https://images.pexels.com/photos/5938/food-salad-healthy-lunch.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
     pathname: '/salads',
+  },
+  {
+    id: 5,
+    imageWithText: 'Ciasta',
+    url:
+      'https://images.pexels.com/photos/45202/brownie-dessert-cake-sweet-45202.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    pathname: '/desserts',
   },
 ]
 
@@ -139,7 +147,7 @@ const MenuPage = () => {
     })
       .to(bottomImagesRef.current[0], {
         autoAlpha: 1,
-        x: '-=200%',
+        x: '-=250%',
         duration: 1,
         delay: 1.5,
       })
@@ -154,7 +162,7 @@ const MenuPage = () => {
       )
       .to(bottomImagesRef.current[1], {
         autoAlpha: 1,
-        x: '-=200%',
+        x: '-=250%',
         duration: 1,
         delay: 1.5,
       })
@@ -178,7 +186,7 @@ const MenuPage = () => {
 
   return (
     <PagesWrapper>
-      <HeroImage src='https://cdn.pixabay.com/photo/2018/03/07/18/42/menu-3206749_960_720.jpg' />
+      <HeroImage src={menuHero} alt='Menu hero image at the top of the page' />
       <InnerWrapper>
         <StyledHeader>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta debitis
@@ -214,18 +222,18 @@ const MenuPage = () => {
         </StyledParagraph>
         <PhotosWrapper>
           <StyledBottomImage
-            src='https://cdn.pixabay.com/photo/2018/08/29/19/03/steak-3640560_960_720.jpg'
-            alt=''
+            src='https://images.pexels.com/photos/3026805/pexels-photo-3026805.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+            alt='Szaszłyki'
             ref={addToImagesRef}
           />
           <StyledBottomImage
-            src='https://cdn.pixabay.com/photo/2017/11/10/15/04/steak-2936531_960_720.jpg'
-            alt=''
+            src='https://images.pexels.com/photos/3850838/pexels-photo-3850838.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+            alt='Ramen'
             ref={addToImagesRef}
           />
           <StyledBottomImage
-            src='https://cdn.pixabay.com/photo/2017/11/24/17/25/steak-2975323_960_720.jpg'
-            alt=''
+            src='https://images.pexels.com/photos/769289/pexels-photo-769289.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+            alt='Dziczyzna'
             ref={addToImagesRef}
           />
         </PhotosWrapper>

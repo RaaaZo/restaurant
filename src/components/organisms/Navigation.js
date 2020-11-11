@@ -1,16 +1,28 @@
 import { HamburgerMenu } from 'components/atoms/NavigationItems/HamburgerMenu'
 import NavigationModal from 'components/atoms/NavigationItems/NavigationModal'
 import React, { useState } from 'react'
+import { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
 const Wrapper = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: ${({ theme }) => theme.navigationLight};
+  transition: background-color 150ms ease-in-out;
+  z-index: 20;
+
+  ${({ navigationScrolled }) =>
+    navigationScrolled &&
+    css`
+      background-color: rgb(37, 198, 133, 0.9);
+    `}
 `
 
 const HamburgerWrapper = styled.div`
@@ -82,16 +94,27 @@ const ListItem = styled(NavLink)`
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
 
   const handleIsOpen = () => {
     setIsOpen((prevState) => !prevState)
   }
 
+  useEffect(() => {
+    window.addEventListener('scroll', toggleNavigation)
+
+    return () => {
+      window.removeEventListener('scroll', toggleNavigation)
+    }
+  })
+
+  const toggleNavigation = () => setIsScrolled(() => window.scrollY > 0)
+
   return (
     <>
       <NavigationModal closeModal={handleIsOpen} isOpen={isOpen} />
 
-      <Wrapper>
+      <Wrapper navigationScrolled={isScrolled}>
         {/* logo backgroundDarkMode fill */}
         <p>Logo</p>
 

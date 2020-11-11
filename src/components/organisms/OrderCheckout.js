@@ -1,7 +1,7 @@
 import { Header } from 'components/atoms/Header'
 import OrderedItem from 'components/molecules/OrderedItem'
 import OrderSummary from 'components/molecules/OrderSummary'
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
 const DUMMY_DATA = [
@@ -50,22 +50,12 @@ const StyledHeader = styled(Header)`
 `
 
 const OrderCheckout = () => {
-  // make an array of dishes prices which is passed to OrderSummary component
-  let prices = []
-  const flatPrices = () =>
-    DUMMY_DATA.filter(({ price }) => {
-      if (price) {
-        return prices.push(price)
-      } else {
-        return (prices = [0])
-      }
-    })
-  flatPrices()
+  const [data, setData] = useState(DUMMY_DATA)
 
   return (
     <Wrapper>
       <ItemWrapper>
-        {DUMMY_DATA.length !== 0 ? (
+        {data &&
           DUMMY_DATA.map(({ id, amount, dish, price, image }) => (
             <OrderedItem
               key={id}
@@ -74,13 +64,10 @@ const OrderCheckout = () => {
               dish={dish}
               price={price}
             />
-          ))
-        ) : (
-          <StyledHeader>Nie ma żadnych dań w koszyku</StyledHeader>
-        )}
+          ))}
       </ItemWrapper>
 
-      <OrderSummary priceAmount={prices} />
+      <OrderSummary data={data} />
     </Wrapper>
   )
 }

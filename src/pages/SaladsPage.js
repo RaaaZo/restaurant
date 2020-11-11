@@ -20,6 +20,8 @@ const SaladsPage = () => {
       headerText='Sałatki'
       paragraphTopText={paragraphTopText}
       paragraphBottomText={paragraphBottomText}
+      heroImage='https://images.pexels.com/photos/5916/food-salad-healthy-colorful.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+      sectionImage='https://images.pexels.com/photos/5928/salad-healthy-diet-spinach.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
     />
   )
 }

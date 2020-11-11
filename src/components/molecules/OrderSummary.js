@@ -25,37 +25,28 @@ const StyledButton = styled(Button)`
   margin-top: 20px;
 `
 
-const OrderSummary = ({ priceAmount }) => {
-  let amount
-  const deliveryPrice = 10
+const OrderSummary = ({ data }) => {
+  const deliveryTax = 10
 
-  if (priceAmount.length !== 0) {
-    amount = priceAmount.reduce((total, amount) => total + amount)
-  }
+  const amountAndPrices = data.map((item) => {
+    const price = item.amount * item.price
 
-  function handleTotalPrice() {
-    if (priceAmount.length !== 0) {
-      return amount + deliveryPrice
-    }
-    return deliveryPrice
-  }
+    return price
+  })
+
+  const totalPrice = amountAndPrices.reduce((acc, value) => acc + value, 0)
 
   return (
     <Wrapper>
-      <OrderSummaryItem title='Razem' price={amount || 0} />
-      <OrderSummaryItem title='Koszt dostawy' price={10} />
-      <OrderSummaryItem title='Kwota całkowita' price={handleTotalPrice()} />
+      <OrderSummaryItem title='Razem' price={totalPrice || 0} />
+      <OrderSummaryItem title='Koszt dostawy' price={deliveryTax} />
+      <OrderSummaryItem
+        title='Kwota całkowita'
+        price={totalPrice + deliveryTax}
+      />
       <StyledButton>Zapłać</StyledButton>
     </Wrapper>
   )
-}
-
-OrderSummary.propTypes = {
-  priceAmount: PropTypes.array,
-}
-
-OrderSummary.defaultProps = {
-  priceAmount: [0, 0],
 }
 
 export default OrderSummary

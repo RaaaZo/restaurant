@@ -1,16 +1,19 @@
-import { Button } from 'components/atoms/Button'
-import { Header } from 'components/atoms/Header'
-import { Paragraph } from 'components/atoms/Paragraph'
 import React, { useEffect, useRef } from 'react'
 import styled, { css } from 'styled-components'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+import { Button } from 'components/atoms/Button'
+import { Header } from 'components/atoms/Header'
+import { Paragraph } from 'components/atoms/Paragraph'
 import { useHistory } from 'react-router-dom'
-import welcomeBackground from 'assets/img/welcome-background.jpg'
 import { HeroImage } from 'components/atoms/HeroImage'
 import { PagesWrapper } from 'components/atoms/PagesWrapper'
 import { BottomImage } from 'components/atoms/BottomImg'
 import { PhotosWrapper } from 'components/atoms/PhotosWrapper'
+
+import welcomeBackground from 'assets/img/welcome-background.jpg'
+import homeHero from 'assets/img/hero_home-min.jpg'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -100,29 +103,42 @@ const HomePage = () => {
   useEffect(() => {
     gsap.set(bottomImages.current, { scale: 0 })
 
-    gsap.to(bottomImages.current, {
-      scale: 1,
-      duration: 0.7,
-      stagger: 1.2,
-      scrollTrigger: {
-        id: 'item',
-        trigger: bottomImages.current,
-        start: 'top center+=400',
-        toggleActions: 'play none none reverse',
-      },
-    })
+    const tl = gsap.timeline()
+
+    if (window.innerWidth < 1280) {
+      gsap.to(bottomImages.current, {
+        scale: 1,
+        duration: 0.7,
+        stagger: 1.2,
+        scrollTrigger: {
+          id: 'item',
+          trigger: bottomImages.current,
+          start: 'top center+=400',
+          toggleActions: 'play none none reverse',
+        },
+      })
+    }
 
     if (window.innerWidth >= 1280) {
-      gsap.to(bottomImages.current[0], {
-        x: '-50%',
-        delay: 0.8,
-        duration: 1.2,
+      gsap.to(bottomImages.current, {
+        scale: 1,
+        duration: 0.7,
+        stagger: 0.8,
+        scrollTrigger: {
+          id: 'item',
+          trigger: bottomImages.current,
+          start: 'top center+=400',
+          toggleActions: 'play none none reverse',
+        },
       })
-      gsap.to(bottomImages.current[2], {
-        x: '50%',
-        delay: 3,
-        duration: 1.2,
+
+      tl.to(bottomImages.current[0], {
+        x: '-=110%',
+        rotate: 0,
+        duration: 0.7,
       })
+        .to(bottomImages.current[1], { rotate: 0, duration: 0.7 })
+        .to(bottomImages.current[2], { x: '+=110%', rotate: 0, duration: 0.7 })
     }
   }, [])
 
@@ -168,10 +184,7 @@ const HomePage = () => {
       </WelcomeModal>
 
       <PagesWrapper>
-        <HeroImage
-          src='https://cdn.pixabay.com/photo/2016/11/18/14/05/brick-wall-1834784_960_720.jpg'
-          alt=''
-        />
+        <HeroImage src={homeHero} alt='Home hero image at the top of page' />
         <InnerWrapper>
           <StyledHeader>Lorem, ipsum dolor.</StyledHeader>
           <StyledParagraph>
@@ -180,8 +193,8 @@ const HomePage = () => {
             velit dicta.
           </StyledParagraph>
           <HeroImage
-            src='https://cdn.pixabay.com/photo/2020/04/03/14/51/goulash-4999166_960_720.jpg'
-            alt=''
+            src='https://images.pexels.com/photos/3026808/pexels-photo-3026808.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+            alt='Tofu Ramen'
           />
           <StyledParagraph>
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero
@@ -193,20 +206,23 @@ const HomePage = () => {
 
           <PhotosWrapper>
             <BottomImage
-              src='https://cdn.pixabay.com/photo/2018/06/27/20/24/goulash-3502510_960_720.jpg'
-              alt=''
+              homeBottomImages
+              src='https://images.pexels.com/photos/3186654/pexels-photo-3186654.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+              alt='Żeberka z warzywami'
               ref={addToRef}
             />
             <BottomImage
+              homeBottomImages
               secondImage={true}
-              src='https://cdn.pixabay.com/photo/2017/11/10/15/04/steak-2936531_960_720.jpg'
-              alt=''
+              src='https://images.pexels.com/photos/1351238/pexels-photo-1351238.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+              alt='Bruschetta z pesto'
               ref={addToRef}
             />
             <BottomImage
+              homeBottomImages
               thirdImage={true}
-              src='https://cdn.pixabay.com/photo/2018/06/18/21/53/fish-3483452_960_720.jpg'
-              alt=''
+              src='https://images.pexels.com/photos/3535383/pexels-photo-3535383.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+              alt='Dziczyzna z frytkami'
               ref={addToRef}
             />
           </PhotosWrapper>
