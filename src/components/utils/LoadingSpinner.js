@@ -12,6 +12,7 @@ const Wrapper = styled.div`
   width: 100%;
   height: 100%;
   background-color: ${({ theme }) => theme.backgroundDark};
+  z-index: 9999;
 `
 
 const LoadingSpinner = () => {

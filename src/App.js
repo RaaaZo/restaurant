@@ -15,9 +15,10 @@ const SaladsPage = React.lazy(() => import('./pages/SaladsPage'))
 const ContactPage = React.lazy(() => import('./pages/ContactPage'))
 const MenuPage = React.lazy(() => import('./pages/MenuPage'))
 const CartPage = React.lazy(() => import('./pages/CartPage'))
-const AuthenticationPage = React.lazy(() =>
-  import('./pages/AuthenticationPage')
-)
+const ShippingPage = React.lazy(() => import('./pages/ShippingPage'))
+const ProfilePage = React.lazy(() => import('./pages/ProfilePage'))
+const LoginPage = React.lazy(() => import('./pages/LoginPage'))
+const RegisterPage = React.lazy(() => import('./pages/RegisterPage'))
 
 function App() {
   return (
@@ -29,7 +30,6 @@ function App() {
           <Switch>
             <Route exact path='/' component={HomePage} />
             <Route exact path='/menu' component={MenuPage} />
-            <Route exact path='/menu' component={MenuPage} />
             <Route exact path='/appetizers' component={AppetizersPage} />
             <Route exact path='/soups' component={SoupsPage} />
             <Route exact path='/main' component={MainCoursesPage} />
@@ -37,7 +37,10 @@ function App() {
             <Route exact path='/desserts' component={DessertsPage} />
             <Route exact path='/contact' component={ContactPage} />
             <Route exact path='/cart' component={CartPage} />
-            <Route exact path='/auth' component={AuthenticationPage} />
+            <Route exact path='/shipping' component={ShippingPage} />
+            <Route exact path='/profile' component={ProfilePage} />
+            <Route exact path='/login' component={LoginPage} />
+            <Route exact path='/register' component={RegisterPage} />
           </Switch>
           <Footer />
         </Suspense>

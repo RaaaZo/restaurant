@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import PropTypes from 'prop-types'
 
 import OrderSummaryItem from './OrderSummaryItem'
 import { Button } from 'components/atoms/Button'
+import { useHistory } from 'react-router-dom'
 
 const Wrapper = styled.div`
   width: 100%;
@@ -26,6 +26,8 @@ const StyledButton = styled(Button)`
 `
 
 const OrderSummary = ({ data }) => {
+  const { push } = useHistory()
+
   const deliveryTax = 10
 
   const amountAndPrices = data.map((item) => {
@@ -44,7 +46,7 @@ const OrderSummary = ({ data }) => {
         title='Kwota całkowita'
         price={totalPrice + deliveryTax}
       />
-      <StyledButton>Zapłać</StyledButton>
+      <StyledButton onClick={() => push('/shipping')}>Zapłać</StyledButton>
     </Wrapper>
   )
 }

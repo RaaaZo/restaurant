@@ -2,6 +2,7 @@ import { HamburgerMenu } from 'components/atoms/NavigationItems/HamburgerMenu'
 import NavigationModal from 'components/atoms/NavigationItems/NavigationModal'
 import React, { useState } from 'react'
 import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
@@ -96,6 +97,8 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
 
+  const userLogin = useSelector((state) => state.userLogin)
+
   const handleIsOpen = () => {
     setIsOpen((prevState) => !prevState)
   }
@@ -131,9 +134,15 @@ const Navigation = () => {
             Zamówienie
           </ListItem>
 
-          <ListItem exact to='/auth' activeClassName='isActive'>
-            Rejestracja
-          </ListItem>
+          {userLogin.userInfo?.username ? (
+            <ListItem exact to='/profile' activeClassName='isActive'>
+              {userLogin.userInfo.username}
+            </ListItem>
+          ) : (
+            <ListItem exact to='/login' activeClassName='isActive'>
+              Zaloguj się
+            </ListItem>
+          )}
 
           <ListItem exact to='/contact' activeClassName='isActive'>
             Kontakt

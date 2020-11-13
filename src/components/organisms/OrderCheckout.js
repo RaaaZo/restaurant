@@ -1,4 +1,3 @@
-import { Header } from 'components/atoms/Header'
 import OrderedItem from 'components/molecules/OrderedItem'
 import OrderSummary from 'components/molecules/OrderSummary'
 import React, { useState } from 'react'
@@ -43,10 +42,6 @@ const ItemWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`
-
-const StyledHeader = styled(Header)`
-  margin: 20px;
 `
 
 const OrderCheckout = () => {

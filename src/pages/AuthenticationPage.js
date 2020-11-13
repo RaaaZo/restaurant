@@ -10,13 +10,22 @@ import FormCell from 'components/molecules/FormCell'
 import { Form, Formik, ErrorMessage } from 'formik'
 
 import registerHero from 'assets/img/hero_register-min.jpg'
+import { useDispatch, useSelector } from 'react-redux'
+import { login, registerUser } from 'ducks/actions/userActions'
+import { useHistory } from 'react-router-dom'
+import { useEffect } from 'react'
+import LoadingSpinner from 'components/utils/LoadingSpinner'
 
 const SignupSchema = Yup.object().shape({
-  name: Yup.string()
+  username: Yup.string()
     .min(2, 'Conajmniej 2 znaki')
     .max(30, 'Maksymalnie 30 znaków')
     .required('Wymagane'),
   password: Yup.string()
+    .min(6, 'Hasło musi się składać z conajmniej 6 znaków')
+    .max(16, 'Hasło nie może zawierać więcej niż 16 znaków')
+    .required('Wymagane'),
+  confirmPassword: Yup.string()
     .min(6, 'Hasło musi się składać z conajmniej 6 znaków')
     .max(16, 'Hasło nie może zawierać więcej niż 16 znaków')
     .required('Wymagane'),
@@ -73,8 +82,40 @@ const ErrorMessageWrapper = styled.div`
 
 const AuthenticationPage = () => {
   const [hasAccount, setHasAccount] = useState(false)
+  const [loginData, setLoginData] = useState()
+  const [registerData, setRegisterData] = useState()
 
-  const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
+  const userLogin = useSelector((state) => state.userLogin)
+  const { loading, error, userInfo } = userLogin
+
+  const { push } = useHistory()
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (registerData) {
+      dispatch(
+        registerUser(
+          registerData.username,
+          registerData.email,
+          registerData.password,
+          registerData.confirmPassword
+        )
+      )
+      push('/')
+    }
+  }, [registerData, push, dispatch])
+
+  useEffect(() => {
+    if (loginData) {
+      dispatch(login(loginData.email, loginData.password))
+    }
+  }, [loginData, dispatch])
+
+  useEffect(() => {
+    if (!error) {
+      push('/')
+    }
+  }, [push, error])
 
   return (
     <PagesWrapper>
@@ -90,9 +131,9 @@ const AuthenticationPage = () => {
               email: '',
               password: '',
             }}
-            onSubmit={async (values, { resetForm }) => {
-              await sleep(500)
-              console.log(values)
+            onSubmit={(values, { resetForm }) => {
+              setLoginData(values)
+
               resetForm()
             }}
             validationSchema={LoginSchema}
@@ -101,7 +142,7 @@ const AuthenticationPage = () => {
               return (
                 <Form>
                   <FormWrapper>
-                    <FormCell id='email' name='E-mail' type='email' />
+                    <FormCell id='email' name='E-mail' type='string' />
                     <ErrorMessageWrapper>
                       <ErrorMessage name='email' />
                     </ErrorMessageWrapper>
@@ -110,6 +151,10 @@ const AuthenticationPage = () => {
                     <ErrorMessageWrapper>
                       <ErrorMessage name='password' />
                     </ErrorMessageWrapper>
+
+                    {loading && <LoadingSpinner />}
+                    {error && <p>{error}</p>}
+
                     <StyledButton type='submit'>Zaloguj się</StyledButton>
 
                     <StyledHeader
@@ -133,13 +178,13 @@ const AuthenticationPage = () => {
           <StyledHeader>Zarejestruj się!</StyledHeader>
           <Formik
             initialValues={{
-              name: '',
+              username: '',
               email: '',
               password: '',
+              confirmPassword: '',
             }}
-            onSubmit={async (values, { resetForm }) => {
-              await sleep(500)
-              console.log(values)
+            onSubmit={(values, { resetForm }) => {
+              setRegisterData(values)
               resetForm()
             }}
             validationSchema={SignupSchema}
@@ -148,18 +193,34 @@ const AuthenticationPage = () => {
               return (
                 <Form>
                   <FormWrapper>
-                    <FormCell id='name' name='Imię' type='text' />
+                    <FormCell
+                      id='username'
+                      name='Nazwa użytkownika'
+                      type='text'
+                    />
                     <ErrorMessageWrapper>
-                      <ErrorMessage name='name' />
+                      <ErrorMessage name='username' />
                     </ErrorMessageWrapper>
+
                     <FormCell id='email' name='E-mail' type='email' />
                     <ErrorMessageWrapper>
                       <ErrorMessage name='email' />
                     </ErrorMessageWrapper>
+
                     <FormCell id='password' name='Hasło' type='password' />
                     <ErrorMessageWrapper>
                       <ErrorMessage name='password' />
                     </ErrorMessageWrapper>
+
+                    <FormCell
+                      id='confirmPassword'
+                      name='Powtórz hasło'
+                      type='password'
+                    />
+                    <ErrorMessageWrapper>
+                      <ErrorMessage name='confirmPassword' />
+                    </ErrorMessageWrapper>
+
                     <StyledButton type='submit'>Zarejestruj się</StyledButton>
 
                     <StyledHeader
@@ -170,7 +231,7 @@ const AuthenticationPage = () => {
                       }}
                     >
                       Masz konto?
-                      <StyledSpan> Zaloguj się!</StyledSpan>
+                      <StyledSpan>Zaloguj się!</StyledSpan>
                     </StyledHeader>
                   </FormWrapper>
                 </Form>
