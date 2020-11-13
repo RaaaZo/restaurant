@@ -30,8 +30,9 @@ const StyledHeader = styled(Header)`
 `
 
 const StyledInfoText = styled(Paragraph)`
-  color: ${({ theme }) => theme.accentsDark};
+  color: ${({ theme }) => theme.accentsLight};
   font-size: ${({ theme: { fontSize } }) => fontSize.xl};
+  font-weight: bold;
 
   @media (min-width: 768px) {
     font-size: ${({ theme: { fontSize } }) => fontSize.xxl};

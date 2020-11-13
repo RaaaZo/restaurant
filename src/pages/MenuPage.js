@@ -46,7 +46,7 @@ const DUMMY_DATA = [
   },
   {
     id: 5,
-    imageWithText: 'Ciasta',
+    imageWithText: 'Desery',
     url:
       'https://images.pexels.com/photos/45202/brownie-dessert-cake-sweet-45202.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
     pathname: '/desserts',

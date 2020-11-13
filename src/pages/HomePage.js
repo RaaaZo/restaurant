@@ -76,6 +76,8 @@ const StyledParagraph = styled(Paragraph)`
 `
 
 const StyledButton = styled(Button)`
+  background-color: ${({ theme }) => theme.accentsDark};
+  border: 2px solid ${({ theme }) => theme.accentsDark};
   display: block;
   margin: 20px auto;
 

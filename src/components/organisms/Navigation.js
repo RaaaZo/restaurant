@@ -22,7 +22,7 @@ const Wrapper = styled.div`
   ${({ navigationScrolled }) =>
     navigationScrolled &&
     css`
-      background-color: rgb(37, 198, 133, 0.9);
+      background-color: rgb(255, 209, 0, 0.9);
     `}
 `
 

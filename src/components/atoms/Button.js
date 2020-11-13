@@ -4,8 +4,8 @@ export const Button = styled.button`
   width: 200px;
   padding: 10px 0;
   font-size: ${({ theme }) => theme.fontSize.l};
-  background-color: ${({ theme }) => theme.accentsDark};
-  border: 2px solid ${({ theme }) => theme.accentsDark};
+  background-color: ${({ theme }) => theme.accentsLight};
+  border: 2px solid ${({ theme }) => theme.accentsLight};
   border-radius: 15px;
   cursor: pointer;
   transition: background-color 0.4s ease-in-out, border-color 0.4s ease-in-out;

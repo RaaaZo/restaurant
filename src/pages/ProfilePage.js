@@ -71,7 +71,7 @@ const ProfilePage = () => {
   const userLogin = useSelector((state) => state.userLogin)
 
   const userDetails = useSelector((state) => state.userDetails)
-  const { loading = true, error, userInfo } = userDetails
+  const { loading = true, userInfo } = userDetails
 
   const userDetailsUpdate = useSelector((state) => state.userDetailsUpdate)
   const { success, error: updateError } = userDetailsUpdate
@@ -80,16 +80,18 @@ const ProfilePage = () => {
     dispatch(fetchUserDetails())
   }, [dispatch])
 
+  const isUserInfo = userLogin.userInfo
+
   // if not logged user push to login page
   useEffect(() => {
-    if (!userLogin.userInfo) {
+    if (!isUserInfo) {
       push('/login')
     }
-  }, [push])
+  }, [push, isUserInfo])
 
   useEffect(() => {
     if (success) go(0)
-  }, [success])
+  }, [success, go])
 
   const handleLogoutButton = () => {
     dispatch(logout())
