@@ -1,26 +1,9 @@
 import OrderedItem from 'components/molecules/OrderedItem'
 import OrderSummary from 'components/molecules/OrderSummary'
+import LoadingSpinner from 'components/utils/LoadingSpinner'
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components'
-
-const DUMMY_DATA = [
-  {
-    id: 1,
-    amount: 2,
-    dish: 'Stek',
-    price: 70,
-    image:
-      'https://cdn.pixabay.com/photo/2017/11/10/15/04/steak-2936531_960_720.jpg',
-  },
-  {
-    id: 2,
-    amount: 1,
-    dish: 'Burger',
-    price: 33,
-    image:
-      'https://cdn.pixabay.com/photo/2017/11/10/15/04/steak-2936531_960_720.jpg',
-  },
-]
 
 const Wrapper = styled.div`
   width: 100%;
@@ -45,24 +28,29 @@ const ItemWrapper = styled.div`
 `
 
 const OrderCheckout = () => {
-  const [data, setData] = useState(DUMMY_DATA)
+  const cart = useSelector((state) => state.cart)
+  const { cartItems } = cart
 
   return (
     <Wrapper>
       <ItemWrapper>
-        {data &&
-          DUMMY_DATA.map(({ id, amount, dish, price, image }) => (
+        {cartItems ? (
+          cartItems.map(({ id, name, price, image, qty }) => (
             <OrderedItem
-              key={id}
+              key={Math.random() * 999}
               image={image}
-              amount={amount}
-              dish={dish}
+              dish={name}
               price={price}
+              id={id}
+              qty={qty}
             />
-          ))}
+          ))
+        ) : (
+          <LoadingSpinner />
+        )}
       </ItemWrapper>
 
-      <OrderSummary data={data} />
+      <OrderSummary />
     </Wrapper>
   )
 }

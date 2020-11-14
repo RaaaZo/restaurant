@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import OrderSummaryItem from './OrderSummaryItem'
 import { Button } from 'components/atoms/Button'
 import { useHistory } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const Wrapper = styled.div`
   width: 100%;
@@ -16,7 +17,7 @@ const Wrapper = styled.div`
   padding: 20px;
 
   @media (min-width: 1024px) {
-    width: 50%;
+    width: 40%;
     align-self: flex-start;
   }
 `
@@ -25,26 +26,21 @@ const StyledButton = styled(Button)`
   margin-top: 20px;
 `
 
-const OrderSummary = ({ data }) => {
+const OrderSummary = () => {
   const { push } = useHistory()
+  const { cart } = useSelector((state) => state.cart)
 
   const deliveryTax = 10
 
-  const amountAndPrices = data.map((item) => {
-    const price = item.amount * item.price
-
-    return price
-  })
-
-  const totalPrice = amountAndPrices.reduce((acc, value) => acc + value, 0)
+  const cartFullPrice = cart?.reduce((acc, item) => acc + item?.price, 0)
 
   return (
     <Wrapper>
-      <OrderSummaryItem title='Razem' price={totalPrice || 0} />
-      <OrderSummaryItem title='Koszt dostawy' price={deliveryTax} />
+      <OrderSummaryItem title='Razem' price={cartFullPrice || 0} />
+      <OrderSummaryItem title='Koszt dostawy' price={deliveryTax || 0} />
       <OrderSummaryItem
         title='Kwota całkowita'
-        price={totalPrice + deliveryTax}
+        price={cartFullPrice + deliveryTax || 0}
       />
       <StyledButton onClick={() => push('/shipping')}>Zapłać</StyledButton>
     </Wrapper>

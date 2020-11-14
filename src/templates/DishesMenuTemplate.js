@@ -87,6 +87,7 @@ const DishesMenuTemplate = ({
                   name={name}
                   desc={description}
                   img={image}
+                  id={_id}
                 />
               ))}
             </DishCardsWrapper>

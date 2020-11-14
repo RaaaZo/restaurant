@@ -1,4 +1,5 @@
 import { useFetch } from 'hooks/useFetch'
+import { useSuccessToast } from 'hooks/useSuccessToast'
 import React from 'react'
 import DishesMenuTemplate from 'templates/DishesMenuTemplate'
 
@@ -11,7 +12,7 @@ const MainCoursesPage = () => {
   const { loading, error, data } = useFetch(
     'http://localhost:5000/api/dishes/byType?type=mainCourse'
   )
-
+  useSuccessToast()
   return (
     <DishesMenuTemplate
       data={data}

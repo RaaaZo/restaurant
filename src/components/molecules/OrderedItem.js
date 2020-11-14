@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
 import { Header } from 'components/atoms/Header'
+import { useDispatch } from 'react-redux'
+import { removeDishFromCart } from 'ducks/actions/orderActions'
 
 const Wrapper = styled.div`
   width: 100%;
@@ -28,21 +30,35 @@ const StyledHeader = styled(Header)`
 
 const StyledImage = styled.img`
   display: block;
-  width: 100px;
-  height: 100px;
+  width: 125px;
+  height: 125px;
   border-radius: 50%;
-  border: 2px solid ${({ theme }) => theme.accentsDark};
+  border: 2px solid ${({ theme }) => theme.accentsLight};
 `
 
-const OrderedItem = ({ amount, dish, price, image }) => {
+const RemoveHeader = styled(Header)`
+  color: red;
+  font-size: ${({ theme: { fontSize } }) => fontSize.xl};
+  padding: 20px;
+  cursor: pointer;
+`
+
+const OrderedItem = ({ id, dish, price, image, qty }) => {
+  const dispatch = useDispatch()
+
+  const removeButtonHandler = () => {
+    dispatch(removeDishFromCart(id))
+  }
+
   return (
     <>
       {dish && (
         <Wrapper>
           <StyledImage src={image} alt={dish} />
-          <StyledHeader>{amount}x</StyledHeader>
+          <StyledHeader>x{qty}</StyledHeader>
           <StyledHeader>{dish}</StyledHeader>
           <StyledHeader>{price}zł</StyledHeader>
+          <RemoveHeader onClick={removeButtonHandler}>Usuń</RemoveHeader>
         </Wrapper>
       )}
     </>
@@ -50,9 +66,9 @@ const OrderedItem = ({ amount, dish, price, image }) => {
 }
 
 OrderedItem.propTypes = {
-  amount: PropTypes.number.isRequired,
   dish: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
+  image: PropTypes.string.isRequired,
 }
 
 export default OrderedItem

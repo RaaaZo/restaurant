@@ -6,6 +6,9 @@ import Footer from 'components/organisms/Footer'
 import ScrollToTop from 'hooks/ScrollToTop'
 import LoadingSpinner from 'components/utils/LoadingSpinner'
 
+import 'react-toastify/dist/ReactToastify.css'
+import ToastContainer from 'components/utils/ToastContainer'
+
 const HomePage = React.lazy(() => import('./pages/HomePage'))
 const AppetizersPage = React.lazy(() => import('./pages/AppetizersPage'))
 const SoupsPage = React.lazy(() => import('./pages/SoupsPage'))
@@ -26,6 +29,7 @@ function App() {
       <ScrollToTop />
       <StyleTemplate>
         <Suspense fallback={<LoadingSpinner />}>
+          <ToastContainer />
           <Navigation />
           <Switch>
             <Route exact path='/' component={HomePage} />

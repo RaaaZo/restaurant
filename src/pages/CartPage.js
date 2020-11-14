@@ -6,6 +6,10 @@ import { HeroImage } from 'components/atoms/HeroImage'
 import { PagesWrapper } from 'components/atoms/PagesWrapper'
 
 import orderHero from 'assets/img/hero_order-min.jpg'
+import { useSelector } from 'react-redux'
+import { Button } from 'components/atoms/Button'
+import { useHistory } from 'react-router-dom'
+import { Paragraph } from 'components/atoms/Paragraph'
 
 const StyledHeader = styled(Header)`
   position: relative;
@@ -27,19 +31,51 @@ const InnerWrapper = styled.div`
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`
+
+const StyledButton = styled(Button)`
+  margin: 40px auto 20px auto;
+`
+
+const StyledParagraph = styled(Paragraph)`
+  margin: 20px auto;
 `
 
 const CartPage = () => {
+  const cart = useSelector((state) => state.cart)
+  const { cartItems } = cart
+
+  const { push } = useHistory()
+
   return (
     <PagesWrapper>
       <HeroImage
         src={orderHero}
         alt='Order hero image at the top of the page'
       />
-      <InnerWrapper>
-        <StyledHeader>Twoje zamówienie:</StyledHeader>
-      </InnerWrapper>
-      <OrderCheckout />
+      {cartItems.length === 0 ? (
+        <InnerWrapper>
+          <StyledHeader>Nie posiadasz żadnych dań w koszyku</StyledHeader>
+          <StyledParagraph>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet
+            quas ut quasi, ullam minima minus?
+          </StyledParagraph>
+          <StyledButton onClick={() => push('/menu')}>
+            Wybierz coś!
+          </StyledButton>
+        </InnerWrapper>
+      ) : (
+        <>
+          <InnerWrapper>
+            <StyledHeader>Twoje zamówienie:</StyledHeader>
+          </InnerWrapper>
+          <OrderCheckout />
+        </>
+      )}
     </PagesWrapper>
   )
 }

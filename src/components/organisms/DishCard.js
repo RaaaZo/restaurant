@@ -7,6 +7,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Button } from 'components/atoms/Button'
 import { Header } from 'components/atoms/Header'
 import { Paragraph } from 'components/atoms/Paragraph'
+import { useDispatch } from 'react-redux'
+import { addDishToCart } from 'ducks/actions/orderActions'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -44,8 +46,9 @@ const StyledButton = styled(Button)`
   margin: 20px;
 `
 
-const DishCard = ({ name, desc, img }) => {
+const DishCard = ({ name, desc, img, id }) => {
   const dishRef = useRef()
+  const dispatch = useDispatch()
 
   useEffect(() => {
     gsap.fromTo(
@@ -65,12 +68,16 @@ const DishCard = ({ name, desc, img }) => {
     )
   }, [])
 
+  const addToCartHandler = () => {
+    dispatch(addDishToCart(id))
+  }
+
   return (
     <Wrapper ref={dishRef}>
       <Img src={img} alt='' />
       <StyledHeader>{name}</StyledHeader>
       <StyledParagraph>{desc}</StyledParagraph>
-      <StyledButton>Zamów</StyledButton>
+      <StyledButton onClick={addToCartHandler}>Zamów</StyledButton>
     </Wrapper>
   )
 }
