@@ -7,7 +7,6 @@ import styled from 'styled-components'
 
 const Wrapper = styled.div`
   width: 100%;
-  max-width: 500px;
   padding: 0 20px;
   display: flex;
   flex-direction: column;
@@ -15,7 +14,7 @@ const Wrapper = styled.div`
   align-items: center;
 
   @media (min-width: 1024px) {
-    max-width: 1280px;
+    max-width: 1360px;
     flex-direction: row;
     justify-content: space-around;
   }
@@ -23,7 +22,7 @@ const Wrapper = styled.div`
 const ItemWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 `
 

@@ -14,7 +14,7 @@ export const Modal = styled.div`
   z-index: 999;
 
   background: transparent;
-  background-color: #00c896;
+  background-color: ${({ theme }) => theme.navigationLight};
   -webkit-box-shadow: -5px 0px 22px 5px rgba(18, 18, 18, 1);
   -moz-box-shadow: -5px 0px 22px 5px rgba(18, 18, 18, 1);
   box-shadow: -5px 0px 22px 5px rgba(18, 18, 18, 1);

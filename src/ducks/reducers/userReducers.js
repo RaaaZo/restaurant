@@ -72,10 +72,11 @@ export const userRegisterReducer = (state = {}, action) => {
 export const userDetailsReducer = (state = {}, action) => {
   switch (action.type) {
     case USER_DETAILS_REQUEST:
-      return { loading: true }
+      return { ...state, loading: true }
 
     case USER_DETAILS_SUCCESS: {
       return {
+        ...state,
         loading: false,
         userInfo: action.payload,
       }

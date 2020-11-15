@@ -87,6 +87,12 @@ export const fetchUserDetails = () => async (dispatch, getState) => {
       type: USER_DETAILS_REQUEST,
     })
 
+    const { userDetailsUpdate } = getState()
+
+    if (userDetailsUpdate.error) {
+      userDetailsUpdate.error = null
+    }
+
     const {
       userLogin: { userInfo },
     } = getState()

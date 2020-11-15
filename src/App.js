@@ -22,6 +22,7 @@ const ShippingPage = React.lazy(() => import('./pages/ShippingPage'))
 const ProfilePage = React.lazy(() => import('./pages/ProfilePage'))
 const LoginPage = React.lazy(() => import('./pages/LoginPage'))
 const RegisterPage = React.lazy(() => import('./pages/RegisterPage'))
+const SummaryOrderPage = React.lazy(() => import('./pages/SummaryOrderPage'))
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
             <Route exact path='/profile' component={ProfilePage} />
             <Route exact path='/login' component={LoginPage} />
             <Route exact path='/register' component={RegisterPage} />
+            <Route exact path='/summary' component={SummaryOrderPage} />
           </Switch>
           <Footer />
         </Suspense>

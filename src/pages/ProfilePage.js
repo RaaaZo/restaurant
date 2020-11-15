@@ -64,6 +64,14 @@ const StyledButton = styled(Button)`
   margin: 20px auto;
 `
 
+const ProfileAndHistoryWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
+
 const ProfilePage = () => {
   const [message, setMessage] = useState(null)
   const { push, go } = useHistory()
@@ -71,7 +79,7 @@ const ProfilePage = () => {
   const userLogin = useSelector((state) => state.userLogin)
 
   const userDetails = useSelector((state) => state.userDetails)
-  const { loading = true, userInfo } = userDetails
+  const { userInfo, loading = true } = userDetails
 
   const userDetailsUpdate = useSelector((state) => state.userDetailsUpdate)
   const { success, error: updateError } = userDetailsUpdate
@@ -107,81 +115,97 @@ const ProfilePage = () => {
           <Header>
             Profil <StyledSpan>{userInfo.username}</StyledSpan>
           </Header>
-          <ItemsWrapper>
-            <Formik
-              initialValues={{
-                username: userInfo.username,
-                email: userInfo.email,
-                password: '',
-                confirmPassword: '',
-              }}
-              validationSchema={SignupSchema}
-              onSubmit={(values, { resetForm }) => {
-                const { username, email, password, confirmPassword } = values
 
-                if (password !== confirmPassword) {
-                  setMessage('Hasła nie pasują')
-                } else {
-                  dispatch(
-                    updateUserDetails({
-                      id: userInfo._id,
-                      username,
-                      email,
-                      password,
-                    })
+          <ProfileAndHistoryWrapper>
+            <ItemsWrapper>
+              <Formik
+                initialValues={{
+                  username: userInfo.username,
+                  email: userInfo.email,
+                  password: '',
+                  confirmPassword: '',
+                }}
+                validationSchema={SignupSchema}
+                onSubmit={(values, { resetForm, setErrors }) => {
+                  const { username, email, password, confirmPassword } = values
+
+                  if (password !== confirmPassword) {
+                    setMessage('Hasła nie pasują')
+                  } else {
+                    dispatch(
+                      updateUserDetails({
+                        id: userInfo._id,
+                        username,
+                        email,
+                        password,
+                      })
+                    )
+                  }
+
+                  resetForm()
+                  setErrors()
+                }}
+              >
+                {({ resetForm }) => {
+                  return (
+                    <Form>
+                      <FormWrapper>
+                        <FormCell
+                          id='username'
+                          name='Nazwa użytkownika'
+                          type='string'
+                        />
+                        <ErrorMessageWrapper>
+                          <ErrorMessage name='username' />
+                        </ErrorMessageWrapper>
+
+                        <FormCell id='email' name='E-mail' type='email' />
+                        <ErrorMessageWrapper>
+                          <ErrorMessage name='email' />
+                        </ErrorMessageWrapper>
+
+                        <FormCell id='password' name='Hasło' type='password' />
+                        <ErrorMessageWrapper>
+                          <ErrorMessage name='password' />
+                        </ErrorMessageWrapper>
+
+                        <FormCell
+                          id='confirmPassword'
+                          name='Potwierdź Hasło'
+                          type='password'
+                        />
+
+                        <ErrorMessageWrapper>
+                          <ErrorMessage name='confirmPassword' />
+                        </ErrorMessageWrapper>
+
+                        {updateError && (
+                          <ErrorMessageWrapper>
+                            {updateError}
+                          </ErrorMessageWrapper>
+                        )}
+                        {message && (
+                          <ErrorMessageWrapper>{message}</ErrorMessageWrapper>
+                        )}
+
+                        <StyledButton type='submit'>
+                          Zaktualizuj profil
+                        </StyledButton>
+                      </FormWrapper>
+                    </Form>
                   )
-                }
+                }}
+              </Formik>
+            </ItemsWrapper>
+          </ProfileAndHistoryWrapper>
 
-                resetForm()
-              }}
-            >
-              {({ resetForm }) => {
-                return (
-                  <Form>
-                    <FormWrapper>
-                      <FormCell
-                        id='username'
-                        name='Nazwa użytkownika'
-                        type='string'
-                      />
-                      <ErrorMessageWrapper>
-                        <ErrorMessage name='username' />
-                      </ErrorMessageWrapper>
-
-                      <FormCell id='email' name='E-mail' type='email' />
-                      <ErrorMessageWrapper>
-                        <ErrorMessage name='email' />
-                      </ErrorMessageWrapper>
-
-                      <FormCell id='password' name='Hasło' type='password' />
-                      <ErrorMessageWrapper>
-                        <ErrorMessage name='password' />
-                      </ErrorMessageWrapper>
-
-                      <FormCell
-                        id='confirmPassword'
-                        name='Potwierdź Hasło'
-                        type='password'
-                      />
-                      {updateError && (
-                        <ErrorMessageWrapper>{updateError}</ErrorMessageWrapper>
-                      )}
-
-                      <ErrorMessageWrapper>
-                        <ErrorMessage name='confirmPassword' />
-                      </ErrorMessageWrapper>
-
-                      {message && <h3>{message}</h3>}
-
-                      <StyledButton type='submit'>
-                        Zaktualizuj profil
-                      </StyledButton>
-                    </FormWrapper>
-                  </Form>
-                )
-              }}
-            </Formik>
-          </ItemsWrapper>
+          {loading && !userInfo ? (
+            <h3>Nie masz żadnych zamówień</h3>
+          ) : (
+            userInfo.orders.map((item, index) => (
+              <h3 key={index}>Zamówienie {index + 1}</h3>
+            ))
+          )}
 
           <Header>Lorem, ipsum dolor.</Header>
           <StyledParagraph>
