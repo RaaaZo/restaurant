@@ -8,6 +8,9 @@ import {
   ADD_ORDER_REQUEST,
   ADD_ORDER_SUCCESS,
   ADD_ORDER_FAILURE,
+  GET_ORDER_REQUEST,
+  GET_ORDER_SUCCESS,
+  GET_ORDER_FAILURE,
 } from '../constants/orderConstants'
 
 export const cartReducer = (
@@ -97,6 +100,35 @@ export const orderReducer = (state = {}, action) => {
         loading: false,
         error: action.payload,
       }
+
+    default:
+      return state
+  }
+}
+
+export const orderHistoryReducer = (
+  state = { loading: true, orderHistory: {}, error: {} },
+  action
+) => {
+  switch (action.type) {
+    case GET_ORDER_REQUEST:
+      return { ...state, loading: true }
+
+    case GET_ORDER_SUCCESS:
+      return {
+        ...state,
+        orderHistory: action.payload,
+        loading: false,
+      }
+
+    case GET_ORDER_FAILURE: {
+      return {
+        ...state,
+        orderHistory: {},
+        loading: false,
+        error: action.payload,
+      }
+    }
 
     default:
       return state

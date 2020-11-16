@@ -1,4 +1,5 @@
 import { Header } from 'components/atoms/Header'
+import { HeroImage } from 'components/atoms/HeroImage'
 import { PagesWrapper } from 'components/atoms/PagesWrapper'
 import { Paragraph } from 'components/atoms/Paragraph'
 import OrderedItem from 'components/molecules/OrderedItem'
@@ -101,6 +102,10 @@ const SummaryOrderPage = () => {
 
   return (
     <PagesWrapper>
+      <HeroImage
+        src='https://images.pexels.com/photos/1860208/pexels-photo-1860208.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+        alt='Summary order Page hero image of food at the top'
+      />
       <StyledHeader>Podsumowanie zamówienia</StyledHeader>
       <SummaryOrderWrapper>
         <CartItemsWrapper>

@@ -42,11 +42,18 @@ const StyledImage = styled.img`
 const RemoveHeader = styled(Header)`
   color: red;
   font-size: ${({ theme: { fontSize } }) => fontSize.xl};
-  /* padding: 20px 40px 20px 0; */
   cursor: pointer;
 `
 
-const OrderedItem = ({ id, dish, price, image, qty, goToPayment }) => {
+const OrderedItem = ({
+  id,
+  dish,
+  price,
+  image,
+  qty,
+  goToPayment,
+  noRemoveButton,
+}) => {
   const dispatch = useDispatch()
 
   const dishSliced = dish.slice(0, 7)
@@ -58,14 +65,14 @@ const OrderedItem = ({ id, dish, price, image, qty, goToPayment }) => {
   return (
     <>
       {dish && (
-        <Wrapper goToPayment>
+        <Wrapper goToPayment={goToPayment}>
           <StyledImage src={image} alt={dish} />
           <StyledHeader>x{qty}</StyledHeader>
           <StyledHeader>
             {dish.length > 7 ? `${dishSliced}...` : dish}
           </StyledHeader>
           <StyledHeader>{price}zł</StyledHeader>
-          {goToPayment ? null : (
+          {goToPayment || noRemoveButton ? null : (
             <RemoveHeader onClick={removeButtonHandler}>Usuń</RemoveHeader>
           )}
         </Wrapper>

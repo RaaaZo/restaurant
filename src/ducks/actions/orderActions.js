@@ -8,6 +8,8 @@ import {
   ADD_ORDER_SUCCESS,
   ADD_SHIPPING_ADDRESS_AND_PAYMENT_METHOD,
   CLEAR_ADD_DISH_SUCCESS,
+  GET_ORDER_REQUEST,
+  GET_ORDER_SUCCESS,
   REMOVE_DISH_FROM_CART,
 } from 'ducks/constants/orderConstants'
 
@@ -107,10 +109,31 @@ export const addOrder = (
 
     localStorage.removeItem('cartItems')
   } catch (error) {
-    console.log(error.response)
     dispatch({
       type: ADD_ORDER_FAILURE,
       payload: error,
+    })
+  }
+}
+
+export const getOrderById = (orderId) => async (dispatch) => {
+  try {
+    dispatch({
+      type: GET_ORDER_REQUEST,
+    })
+
+    const { data } = await Axios.get(
+      `http://localhost:5000/api/orders/${orderId}`
+    )
+
+    dispatch({
+      type: GET_ORDER_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    dispatch({
+      type: GET_ORDER_SUCCESS,
+      payload: error.response,
     })
   }
 }

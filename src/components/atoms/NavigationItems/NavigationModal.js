@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import { NavLink } from 'react-router-dom'
 import styled, { css } from 'styled-components'
+import { useSelector } from 'react-redux'
 
 export const Modal = styled.div`
   transform: translateX(150%);
@@ -105,6 +106,7 @@ const ListItem = styled(NavLink)`
 `
 
 const NavigationModal = ({ isOpen, closeModal }) => {
+  const userLogin = useSelector((state) => state.userLogin)
   return (
     <>
       <Backdrop isOpen={isOpen} onClick={closeModal} />
@@ -137,14 +139,25 @@ const NavigationModal = ({ isOpen, closeModal }) => {
             Zamówienie
           </ListItem>
 
-          <ListItem
-            exact
-            to='/auth'
-            activeClassName='isActive'
-            onClick={closeModal}
-          >
-            Rejestracja
-          </ListItem>
+          {userLogin.userInfo?.username ? (
+            <ListItem
+              exact
+              to='/profile'
+              activeClassName='isActive'
+              onClick={closeModal}
+            >
+              {userLogin.userInfo.username}
+            </ListItem>
+          ) : (
+            <ListItem
+              exact
+              to='/login'
+              activeClassName='isActive'
+              onClick={closeModal}
+            >
+              Zaloguj się
+            </ListItem>
+          )}
 
           <ListItem
             exact

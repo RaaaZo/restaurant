@@ -16,6 +16,8 @@ import { Header } from 'components/atoms/Header'
 import LoadingSpinner from 'components/utils/LoadingSpinner'
 import { Paragraph } from 'components/atoms/Paragraph'
 import * as Yup from 'yup'
+import { OrderHistoryButton } from 'components/atoms/OrderHistoryButton'
+import { HeroImage } from 'components/atoms/HeroImage'
 
 const SignupSchema = Yup.object().shape({
   username: Yup.string()
@@ -61,6 +63,7 @@ const StyledParagraph = styled(Paragraph)`
 `
 
 const StyledButton = styled(Button)`
+  display: block;
   margin: 20px auto;
 `
 
@@ -70,6 +73,23 @@ const ProfileAndHistoryWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media (min-width: 1024px) {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+  }
+`
+
+const HistoryWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+const MaxWidthWrapper = styled.div`
+  max-width: 1360px;
 `
 
 const ProfilePage = () => {
@@ -80,6 +100,11 @@ const ProfilePage = () => {
 
   const userDetails = useSelector((state) => state.userDetails)
   const { userInfo, loading = true } = userDetails
+
+  let slicedUserOrders
+  if (userInfo && userInfo.orders.length >= 6) {
+    slicedUserOrders = userInfo.orders.slice(1)
+  }
 
   const userDetailsUpdate = useSelector((state) => state.userDetailsUpdate)
   const { success, error: updateError } = userDetailsUpdate
@@ -107,115 +132,145 @@ const ProfilePage = () => {
   }
 
   return (
-    <PagesWrapper>
-      {loading ? (
-        <LoadingSpinner />
-      ) : (
-        <>
-          <Header>
-            Profil <StyledSpan>{userInfo.username}</StyledSpan>
-          </Header>
+    <>
+      <PagesWrapper>
+        {loading ? (
+          <LoadingSpinner />
+        ) : (
+          <>
+            <HeroImage
+              src='https://images.pexels.com/photos/2347311/pexels-photo-2347311.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+              alt='Profile page hero image of food at the top'
+            />
 
-          <ProfileAndHistoryWrapper>
-            <ItemsWrapper>
-              <Formik
-                initialValues={{
-                  username: userInfo.username,
-                  email: userInfo.email,
-                  password: '',
-                  confirmPassword: '',
-                }}
-                validationSchema={SignupSchema}
-                onSubmit={(values, { resetForm, setErrors }) => {
-                  const { username, email, password, confirmPassword } = values
+            <MaxWidthWrapper>
+              <Header>
+                Profil <StyledSpan>{userInfo.username}</StyledSpan>
+              </Header>
 
-                  if (password !== confirmPassword) {
-                    setMessage('Hasła nie pasują')
-                  } else {
-                    dispatch(
-                      updateUserDetails({
-                        id: userInfo._id,
+              <ProfileAndHistoryWrapper>
+                <ItemsWrapper>
+                  <Formik
+                    initialValues={{
+                      username: userInfo.username,
+                      email: userInfo.email,
+                      password: '',
+                      confirmPassword: '',
+                    }}
+                    validationSchema={SignupSchema}
+                    onSubmit={(values, { resetForm, setErrors }) => {
+                      const {
                         username,
                         email,
                         password,
-                      })
-                    )
-                  }
+                        confirmPassword,
+                      } = values
 
-                  resetForm()
-                  setErrors()
-                }}
-              >
-                {({ resetForm }) => {
-                  return (
-                    <Form>
-                      <FormWrapper>
-                        <FormCell
-                          id='username'
-                          name='Nazwa użytkownika'
-                          type='string'
-                        />
-                        <ErrorMessageWrapper>
-                          <ErrorMessage name='username' />
-                        </ErrorMessageWrapper>
+                      if (password !== confirmPassword) {
+                        setMessage('Hasła nie pasują')
+                      } else {
+                        dispatch(
+                          updateUserDetails({
+                            id: userInfo._id,
+                            username,
+                            email,
+                            password,
+                          })
+                        )
+                      }
 
-                        <FormCell id='email' name='E-mail' type='email' />
-                        <ErrorMessageWrapper>
-                          <ErrorMessage name='email' />
-                        </ErrorMessageWrapper>
+                      resetForm()
+                      setErrors()
+                    }}
+                  >
+                    {({ resetForm }) => {
+                      return (
+                        <Form>
+                          <FormWrapper>
+                            <FormCell
+                              id='username'
+                              name='Nazwa użytkownika'
+                              type='string'
+                            />
+                            <ErrorMessageWrapper>
+                              <ErrorMessage name='username' />
+                            </ErrorMessageWrapper>
 
-                        <FormCell id='password' name='Hasło' type='password' />
-                        <ErrorMessageWrapper>
-                          <ErrorMessage name='password' />
-                        </ErrorMessageWrapper>
+                            <FormCell id='email' name='E-mail' type='email' />
+                            <ErrorMessageWrapper>
+                              <ErrorMessage name='email' />
+                            </ErrorMessageWrapper>
 
-                        <FormCell
-                          id='confirmPassword'
-                          name='Potwierdź Hasło'
-                          type='password'
-                        />
+                            <FormCell
+                              id='password'
+                              name='Hasło'
+                              type='password'
+                            />
+                            <ErrorMessageWrapper>
+                              <ErrorMessage name='password' />
+                            </ErrorMessageWrapper>
 
-                        <ErrorMessageWrapper>
-                          <ErrorMessage name='confirmPassword' />
-                        </ErrorMessageWrapper>
+                            <FormCell
+                              id='confirmPassword'
+                              name='Potwierdź Hasło'
+                              type='password'
+                            />
 
-                        {updateError && (
-                          <ErrorMessageWrapper>
-                            {updateError}
-                          </ErrorMessageWrapper>
-                        )}
-                        {message && (
-                          <ErrorMessageWrapper>{message}</ErrorMessageWrapper>
-                        )}
+                            <ErrorMessageWrapper>
+                              <ErrorMessage name='confirmPassword' />
+                            </ErrorMessageWrapper>
 
-                        <StyledButton type='submit'>
-                          Zaktualizuj profil
-                        </StyledButton>
-                      </FormWrapper>
-                    </Form>
-                  )
-                }}
-              </Formik>
-            </ItemsWrapper>
-          </ProfileAndHistoryWrapper>
+                            {updateError && (
+                              <ErrorMessageWrapper>
+                                {updateError}
+                              </ErrorMessageWrapper>
+                            )}
+                            {message && (
+                              <ErrorMessageWrapper>
+                                {message}
+                              </ErrorMessageWrapper>
+                            )}
 
-          {loading && !userInfo ? (
-            <h3>Nie masz żadnych zamówień</h3>
-          ) : (
-            userInfo.orders.map((item, index) => (
-              <h3 key={index}>Zamówienie {index + 1}</h3>
-            ))
-          )}
+                            <StyledButton type='submit'>
+                              Zaktualizuj profil
+                            </StyledButton>
+                          </FormWrapper>
+                        </Form>
+                      )
+                    }}
+                  </Formik>
+                </ItemsWrapper>
 
-          <Header>Lorem, ipsum dolor.</Header>
-          <StyledParagraph>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam
-            unde quos quod rerum architecto animi.
-          </StyledParagraph>
-          <StyledButton onClick={handleLogoutButton}>Wyloguj się</StyledButton>
-        </>
-      )}
-    </PagesWrapper>
+                <HistoryWrapper>
+                  <Header>Historia zamówień</Header>
+                  {loading && !userInfo ? (
+                    <StyledParagraph>Nie masz żadnych zamówień</StyledParagraph>
+                  ) : (
+                    slicedUserOrders.map((item, index) => (
+                      <OrderHistoryButton
+                        onClick={() => push(`/profile/order/${item._id}`)}
+                        key={index}
+                      >
+                        Zamówienie {index + 1}
+                      </OrderHistoryButton>
+                    ))
+                  )}
+                </HistoryWrapper>
+              </ProfileAndHistoryWrapper>
+
+              <Header>Lorem, ipsum dolor.</Header>
+              <StyledParagraph>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                Numquam unde quos quod rerum architecto animi.
+              </StyledParagraph>
+              <StyledButton onClick={handleLogoutButton}>
+                Wyloguj się
+              </StyledButton>
+            </MaxWidthWrapper>
+          </>
+        )}
+      </PagesWrapper>
+    </>
   )
 }
 

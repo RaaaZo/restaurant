@@ -8,6 +8,7 @@ import LoadingSpinner from 'components/utils/LoadingSpinner'
 
 import 'react-toastify/dist/ReactToastify.css'
 import ToastContainer from 'components/utils/ToastContainer'
+import OrderPage from 'pages/OrderPage'
 
 const HomePage = React.lazy(() => import('./pages/HomePage'))
 const AppetizersPage = React.lazy(() => import('./pages/AppetizersPage'))
@@ -47,6 +48,7 @@ function App() {
             <Route exact path='/login' component={LoginPage} />
             <Route exact path='/register' component={RegisterPage} />
             <Route exact path='/summary' component={SummaryOrderPage} />
+            <Route exact path='/profile/order/:id' component={OrderPage} />
           </Switch>
           <Footer />
         </Suspense>

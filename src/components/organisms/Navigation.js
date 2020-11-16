@@ -1,9 +1,10 @@
+import { Header } from 'components/atoms/Header'
 import { HamburgerMenu } from 'components/atoms/NavigationItems/HamburgerMenu'
 import NavigationModal from 'components/atoms/NavigationItems/NavigationModal'
 import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
 const Wrapper = styled.div`
@@ -93,6 +94,12 @@ const ListItem = styled(NavLink)`
   }
 `
 
+const StyledHeader = styled(Header)`
+  margin-left: 30px;
+  margin-top: 0;
+  color: #000;
+`
+
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
@@ -118,8 +125,9 @@ const Navigation = () => {
       <NavigationModal closeModal={handleIsOpen} isOpen={isOpen} />
 
       <Wrapper navigationScrolled={isScrolled}>
-        {/* logo backgroundDarkMode fill */}
-        <p>Logo</p>
+        <StyledHeader as={Link} to='/'>
+          ProFood
+        </StyledHeader>
 
         <List>
           <ListItem exact to='/' activeClassName='isActive'>

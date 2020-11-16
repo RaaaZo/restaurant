@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import styled, { css } from 'styled-components'
 import { useHistory } from 'react-router-dom'
 import { useSelector } from 'react-redux'
@@ -6,6 +6,7 @@ import { toast } from 'react-toastify'
 
 import OrderSummaryItem from './OrderSummaryItem'
 import { Button } from 'components/atoms/Button'
+import { useTotalPrice } from 'hooks/UseTotalPrice'
 
 const Wrapper = styled.div`
   width: 100%;
@@ -26,7 +27,6 @@ const Wrapper = styled.div`
     css`
       @media (min-width: 1024px) {
         width: 80%;
-        flex-shrink: 2;
         margin-left: 40px;
       }
     `}
@@ -36,7 +36,12 @@ const StyledButton = styled(Button)`
   margin-top: 20px;
 `
 
-const OrderSummary = ({ goToPayment, checkoutHandler }) => {
+const OrderSummary = ({
+  goToPayment,
+  checkoutHandler,
+  orderHistory,
+  order,
+}) => {
   const { push } = useHistory()
   const { cartItems } = useSelector((state) => state.cart)
 
@@ -51,29 +56,32 @@ const OrderSummary = ({ goToPayment, checkoutHandler }) => {
 
   const deliveryTax = 10
 
-  const cartFullPrice = useMemo(
-    () => cartItems?.reduce((acc, item) => acc + item?.price * item?.qty, 0),
-    [cartItems]
-  )
+  const cartFullPrice = useTotalPrice(cartItems)
+  const orderFullPrice = useTotalPrice(order?.data.orderItems)
 
   return (
     <Wrapper goToPayment>
-      <OrderSummaryItem title='Razem' price={cartFullPrice || 0} />
+      <OrderSummaryItem
+        title='Razem'
+        price={orderFullPrice || cartFullPrice || 0}
+      />
       <OrderSummaryItem title='Koszt dostawy' price={deliveryTax || 0} />
       <OrderSummaryItem
         title='Kwota całkowita'
-        price={cartFullPrice + deliveryTax || 0}
+        price={orderFullPrice + deliveryTax || cartFullPrice + deliveryTax || 0}
       />
 
-      <StyledButton
-        onClick={() => {
-          goToPayment && checkoutHandler()
-          goToPayment ? push('/') : push('/shipping')
-          goToPayment && successToast()
-        }}
-      >
-        {goToPayment ? 'Zamawiam' : 'Przejdź dalej'}
-      </StyledButton>
+      {orderHistory ? null : (
+        <StyledButton
+          onClick={() => {
+            goToPayment && checkoutHandler()
+            goToPayment ? push('/') : push('/shipping')
+            goToPayment && successToast()
+          }}
+        >
+          {goToPayment ? 'Zamawiam' : 'Przejdź dalej'}
+        </StyledButton>
+      )}
     </Wrapper>
   )
 }
