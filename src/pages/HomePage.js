@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -13,6 +13,7 @@ import { BottomImage } from 'components/atoms/BottomImg'
 import { PhotosWrapper } from 'components/atoms/PhotosWrapper'
 
 import homeHero from 'assets/img/hero_home-min.jpg'
+import LoadingSpinner from 'components/utils/LoadingSpinner'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -50,6 +51,7 @@ const StyledButton = styled(Button)`
 `
 
 const HomePage = () => {
+  const [isImageLoaded, setisImageLoaded] = useState(false)
   const history = useHistory()
   const bottomImages = useRef([])
 
@@ -104,59 +106,62 @@ const HomePage = () => {
   }, [])
 
   return (
-    <>
-      <PagesWrapper>
-        <HeroImage src={homeHero} alt='Home hero image at the top of page' />
-        <InnerWrapper>
-          <StyledHeader mainHeader>Strona Główna</StyledHeader>
-          <StyledParagraph>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente,
-            voluptatum tempore adipisci iste dignissimos quo doloribus in! Saepe
-            adipisci reiciendis, iusto deleniti illo labore doloribus possimus,
-            rerum harum libero doloremque ab tenetur neque, reprehenderit
-            maiores laborum quis provident! Tempora, ratione.
-          </StyledParagraph>
-          <HeroImage
-            src='https://images.pexels.com/photos/3026808/pexels-photo-3026808.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
-            alt='Tofu Ramen'
+    <PagesWrapper>
+      {!isImageLoaded && <LoadingSpinner />}
+      <HeroImage
+        src={homeHero}
+        alt='Home hero image at the top of page'
+        onLoad={() => setisImageLoaded(true)}
+      />
+      <InnerWrapper>
+        <StyledHeader mainHeader>Strona Główna</StyledHeader>
+        <StyledParagraph>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente,
+          voluptatum tempore adipisci iste dignissimos quo doloribus in! Saepe
+          adipisci reiciendis, iusto deleniti illo labore doloribus possimus,
+          rerum harum libero doloremque ab tenetur neque, reprehenderit maiores
+          laborum quis provident! Tempora, ratione.
+        </StyledParagraph>
+        <HeroImage
+          src='https://images.pexels.com/photos/3026808/pexels-photo-3026808.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+          alt='Tofu Ramen'
+        />
+        <StyledParagraph>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero fugit
+          numquam ducimus sed quaerat beatae qui? Perspiciatis ipsa neque
+          nesciunt, reprehenderit explicabo quae consequuntur dolores rem
+          recusandae officia laudantium praesentium fugit harum. Necessitatibus
+          nostrum est optio? Facere quod numquam qui!
+        </StyledParagraph>
+
+        <PhotosWrapper>
+          <BottomImage
+            homeBottomImages
+            src='https://images.pexels.com/photos/3186654/pexels-photo-3186654.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+            alt='Żeberka z warzywami'
+            ref={addToRef}
           />
-          <StyledParagraph>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero
-            fugit numquam ducimus sed quaerat beatae qui? Perspiciatis ipsa
-            neque nesciunt, reprehenderit explicabo quae consequuntur dolores
-            rem recusandae officia laudantium praesentium fugit harum.
-            Necessitatibus nostrum est optio? Facere quod numquam qui!
-          </StyledParagraph>
+          <BottomImage
+            homeBottomImages
+            secondImage={true}
+            src='https://images.pexels.com/photos/1351238/pexels-photo-1351238.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+            alt='Bruschetta z pesto'
+            ref={addToRef}
+          />
+          <BottomImage
+            homeBottomImages
+            thirdImage={true}
+            src='https://images.pexels.com/photos/3535383/pexels-photo-3535383.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+            alt='Dziczyzna z frytkami'
+            ref={addToRef}
+          />
+        </PhotosWrapper>
 
-          <PhotosWrapper>
-            <BottomImage
-              homeBottomImages
-              src='https://images.pexels.com/photos/3186654/pexels-photo-3186654.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
-              alt='Żeberka z warzywami'
-              ref={addToRef}
-            />
-            <BottomImage
-              homeBottomImages
-              secondImage={true}
-              src='https://images.pexels.com/photos/1351238/pexels-photo-1351238.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
-              alt='Bruschetta z pesto'
-              ref={addToRef}
-            />
-            <BottomImage
-              homeBottomImages
-              thirdImage={true}
-              src='https://images.pexels.com/photos/3535383/pexels-photo-3535383.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
-              alt='Dziczyzna z frytkami'
-              ref={addToRef}
-            />
-          </PhotosWrapper>
-
-          <StyledButton onClick={() => history.push('/menu')}>
-            Zobacz Menu
-          </StyledButton>
-        </InnerWrapper>
-      </PagesWrapper>
-    </>
+        <StyledButton onClick={() => history.push('/menu')}>
+          Zobacz Menu
+        </StyledButton>
+      </InnerWrapper>
+    </PagesWrapper>
   )
 }
 

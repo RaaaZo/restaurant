@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import { useDispatch, useSelector } from 'react-redux'
@@ -12,6 +12,7 @@ import { Label } from 'components/atoms/Label'
 import { HeroImage } from 'components/atoms/HeroImage'
 import { addShippingAddressAndPaymentMethod } from 'ducks/actions/orderActions'
 import * as Yup from 'yup'
+import LoadingSpinner from 'components/utils/LoadingSpinner'
 
 const shippingSchema = Yup.object().shape({
   address: Yup.string()
@@ -72,11 +73,15 @@ const ShippingPage = () => {
     dispatch(addShippingAddressAndPaymentMethod(shippingAddress, paymentMethod))
   }
 
+  const [isImageLoaded, setisImageLoaded] = useState(false)
+
   return (
     <PagesWrapper>
+      {!isImageLoaded && <LoadingSpinner />}
       <HeroImage
         src='https://images.pexels.com/photos/1860208/pexels-photo-1860208.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
-        alt='Order hero image at the top of the page'
+        alt='Contact hero image at the top of the page'
+        onLoad={() => setisImageLoaded(true)}
       />
 
       <Header>Dane Adresowe</Header>

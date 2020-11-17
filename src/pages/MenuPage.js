@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import gsap from 'gsap'
 import styled from 'styled-components'
 import { Header } from 'components/atoms/Header'
@@ -13,13 +13,12 @@ import { PhotosWrapper } from 'components/atoms/PhotosWrapper'
 
 import menuHero from 'assets/img/hero_menu-min.jpg'
 import menuData from 'data/menuData'
+import LoadingSpinner from 'components/utils/LoadingSpinner'
 
 gsap.registerPlugin(ScrollTrigger)
 
 const StyledHeader = styled(Header)`
   margin: 40px 20px;
-  text-align: justify;
-  text-align-last: center;
 `
 
 const StyledParagraph = styled(Paragraph)`
@@ -136,9 +135,16 @@ const MenuPage = () => {
       .repeat(-1)
   }, [])
 
+  const [isImageLoaded, setisImageLoaded] = useState(false)
+
   return (
     <PagesWrapper>
-      <HeroImage src={menuHero} alt='Menu hero image at the top of the page' />
+      {!isImageLoaded && <LoadingSpinner />}
+      <HeroImage
+        src={menuHero}
+        alt='Contact hero image at the top of the page'
+        onLoad={() => setisImageLoaded(true)}
+      />
       <InnerWrapper>
         <StyledHeader mainHeader>Menu</StyledHeader>
         <StyledParagraph>

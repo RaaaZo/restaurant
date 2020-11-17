@@ -106,11 +106,15 @@ const RegisterPage = () => {
     }
   }, [push, userDataChecker])
 
+  const [isImageLoaded, setisImageLoaded] = useState(false)
+
   return (
     <PagesWrapper>
+      {!isImageLoaded && <LoadingSpinner />}
       <HeroImage
         src={registerHero}
-        alt='Authentication hero at the top of the page'
+        alt='Contact hero image at the top of the page'
+        onLoad={() => setisImageLoaded(true)}
       />
 
       <>
