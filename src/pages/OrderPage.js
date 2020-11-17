@@ -155,7 +155,7 @@ const OrderPage = () => {
                 </StyledParagraph>
               </ShippingDataWrapper>
 
-              <OrderSummary orderHistory goToPayment order={order} />
+              <OrderSummary noButton goToPayment order={order} />
             </SummaryDataWrapper>
           </SummaryOrderWrapper>
         </PagesWrapper>

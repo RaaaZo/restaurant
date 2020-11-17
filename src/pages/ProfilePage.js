@@ -19,7 +19,7 @@ import * as Yup from 'yup'
 import { OrderHistoryButton } from 'components/atoms/OrderHistoryButton'
 import { HeroImage } from 'components/atoms/HeroImage'
 
-const SignupSchema = Yup.object().shape({
+const UpdateSchema = Yup.object().shape({
   username: Yup.string()
     .min(2, 'Conajmniej 2 znaki')
     .max(30, 'Maksymalnie 30 znaków')
@@ -60,6 +60,7 @@ const StyledSpan = styled.span`
 const StyledParagraph = styled(Paragraph)`
   margin: 30px;
   max-width: 1024px;
+  font-weight: ${({ bold }) => (bold ? 'bold' : 'normal')};
 `
 
 const StyledButton = styled(Button)`
@@ -99,11 +100,14 @@ const ProfilePage = () => {
   const userLogin = useSelector((state) => state.userLogin)
 
   const userDetails = useSelector((state) => state.userDetails)
-  const { userInfo, loading = true } = userDetails
+  const { userInfo, loading } = userDetails
 
+  // display only 6 orders on page. If more slice first one if not return userInfo.orders
   let slicedUserOrders
-  if (userInfo && userInfo.orders.length >= 6) {
+  if (!loading && userInfo.orders.length >= 6) {
     slicedUserOrders = userInfo.orders.slice(1)
+  } else {
+    slicedUserOrders = userInfo.orders
   }
 
   const userDetailsUpdate = useSelector((state) => state.userDetailsUpdate)
@@ -157,7 +161,7 @@ const ProfilePage = () => {
                       password: '',
                       confirmPassword: '',
                     }}
-                    validationSchema={SignupSchema}
+                    validationSchema={UpdateSchema}
                     onSubmit={(values, { resetForm, setErrors }) => {
                       const {
                         username,
@@ -243,9 +247,7 @@ const ProfilePage = () => {
 
                 <HistoryWrapper>
                   <Header>Historia zamówień</Header>
-                  {loading && !userInfo ? (
-                    <StyledParagraph>Nie masz żadnych zamówień</StyledParagraph>
-                  ) : (
+                  {!loading && userInfo ? (
                     slicedUserOrders.map((item, index) => (
                       <OrderHistoryButton
                         onClick={() => push(`/profile/order/${item._id}`)}
@@ -254,6 +256,10 @@ const ProfilePage = () => {
                         Zamówienie {index + 1}
                       </OrderHistoryButton>
                     ))
+                  ) : (
+                    <StyledParagraph bold>
+                      Nie masz żadnych zamówień
+                    </StyledParagraph>
                   )}
                 </HistoryWrapper>
               </ProfileAndHistoryWrapper>

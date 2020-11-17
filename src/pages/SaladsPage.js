@@ -10,7 +10,7 @@ const paragraphBottomText =
 
 const SaladsPage = () => {
   const { loading, error, data } = useFetch(
-    'http://localhost:5000/api/dishes/byType?type=salad'
+    `${process.env.REACT_APP_BACKEND_URL}/api/dishes/byType?type=salad`
   )
   useSuccessToast()
   return (

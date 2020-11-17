@@ -42,7 +42,7 @@ const StyledButton = styled(Button)`
 `
 
 const StyledParagraph = styled(Paragraph)`
-  margin: 20px auto;
+  margin: 20px;
 `
 
 const CartPage = () => {

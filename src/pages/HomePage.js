@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -12,37 +12,9 @@ import { PagesWrapper } from 'components/atoms/PagesWrapper'
 import { BottomImage } from 'components/atoms/BottomImg'
 import { PhotosWrapper } from 'components/atoms/PhotosWrapper'
 
-import welcomeBackground from 'assets/img/welcome-background.jpg'
 import homeHero from 'assets/img/hero_home-min.jpg'
 
 gsap.registerPlugin(ScrollTrigger)
-
-const WelcomeModal = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url(${welcomeBackground});
-  background-position: center;
-  background-size: cover;
-  z-index: 9999;
-
-  ${({ welcomeAnimated }) =>
-    welcomeAnimated &&
-    css`
-      display: none;
-    `}
-`
-
-const WelcomeHeader = styled(Header)`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: 'Montserrat', sans-serif;
-  color: #fff;
-`
 
 const InnerWrapper = styled.div`
   width: 100%;
@@ -91,10 +63,8 @@ const StyledButton = styled(Button)`
 const HomePage = () => {
   const history = useHistory()
   const bottomImages = useRef([])
-  const welcomeModal = useRef([])
-  bottomImages.current = []
 
-  const welcomeAnimated = sessionStorage.getItem('welcomeAnimated' || false)
+  bottomImages.current = []
 
   function addToRef(el) {
     if (el && !bottomImages.current.includes(el)) {
@@ -115,7 +85,7 @@ const HomePage = () => {
         scrollTrigger: {
           id: 'item',
           trigger: bottomImages.current,
-          start: 'top center+=400',
+          start: 'top center+=500',
           toggleActions: 'play none none reverse',
         },
       })
@@ -144,55 +114,18 @@ const HomePage = () => {
     }
   }, [])
 
-  useEffect(() => {
-    sessionStorage.setItem('welcomeAnimated', true)
-
-    if (!welcomeAnimated) {
-      const [firstElement, secondElement] = welcomeModal.current.children
-
-      gsap.set([firstElement, secondElement], { scale: 0 })
-
-      const tl = gsap.timeline()
-
-      tl.fromTo(
-        firstElement,
-        { scale: 0 },
-        { scale: 1, duration: 0.7, delay: 0.3 }
-      )
-        .to(firstElement, { scale: 0, duration: 0.7, delay: 1.2 })
-        .fromTo(
-          secondElement,
-          { scale: 0 },
-          { scale: 1, duration: 0.7, delay: 0.3 }
-        )
-        .to(secondElement, { scale: 0, duration: 0.7, delay: 1.5 })
-        .to(welcomeModal.current, {
-          y: '-=200%',
-          duration: 2.5,
-          delay: 0.4,
-        })
-    }
-  }, [welcomeAnimated])
-
   return (
     <>
-      <WelcomeModal welcomeAnimated={welcomeAnimated} ref={welcomeModal}>
-        <WelcomeHeader>
-          Witamy na stronie restauracji (Nazwa restauracji).
-        </WelcomeHeader>
-        <WelcomeHeader>
-          Zamów swoje ulubione posiłki za pomocą jedynie paru kliknięć!
-        </WelcomeHeader>
-      </WelcomeModal>
-
       <PagesWrapper>
         <HeroImage src={homeHero} alt='Home hero image at the top of page' />
         <InnerWrapper>
           <StyledHeader>Lorem, ipsum dolor.</StyledHeader>
           <StyledParagraph>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto
-            obcaecati fugiat culpa voluptate nesciunt. Modi expedita iste odit
-            velit dicta.
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente,
+            voluptatum tempore adipisci iste dignissimos quo doloribus in! Saepe
+            adipisci reiciendis, iusto deleniti illo labore doloribus possimus,
+            rerum harum libero doloremque ab tenetur neque, reprehenderit
+            maiores laborum quis provident! Tempora, ratione.
           </StyledParagraph>
           <HeroImage
             src='https://images.pexels.com/photos/3026808/pexels-photo-3026808.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'

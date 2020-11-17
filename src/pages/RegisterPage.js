@@ -19,7 +19,7 @@ import LoadingSpinner from 'components/utils/LoadingSpinner'
 const SignupSchema = Yup.object().shape({
   username: Yup.string()
     .min(2, 'Conajmniej 2 znaki')
-    .max(30, 'Maksymalnie 30 znaków')
+    .max(15, 'Maksymalnie 15 znaków')
     .required('Wymagane'),
   password: Yup.string()
     .min(6, 'Hasło musi się składać z conajmniej 6 znaków')

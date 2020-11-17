@@ -20,7 +20,7 @@ export const addDishToCart = (dishId) => async (dispatch, getState) => {
     })
 
     const { data } = await Axios.get(
-      `http://localhost:5000/api/dishes/${dishId}`
+      `${process.env.REACT_APP_BACKEND_URL}/api/dishes/${dishId}`
     )
 
     const { data: dish } = data
@@ -92,12 +92,15 @@ export const addOrder = (
       type: ADD_ORDER_REQUEST,
     })
 
-    const { data } = await Axios.post(`http://localhost:5000/api/orders`, {
-      orderItems,
-      shippingAddress,
-      paymentMethod,
-      userId,
-    })
+    const { data } = await Axios.post(
+      `${process.env.REACT_APP_BACKEND_URL}/api/orders`,
+      {
+        orderItems,
+        shippingAddress,
+        paymentMethod,
+        userId,
+      }
+    )
 
     dispatch({
       type: ADD_ORDER_SUCCESS,
@@ -123,7 +126,7 @@ export const getOrderById = (orderId) => async (dispatch) => {
     })
 
     const { data } = await Axios.get(
-      `http://localhost:5000/api/orders/${orderId}`
+      `${process.env.REACT_APP_BACKEND_URL}/api/orders/${orderId}`
     )
 
     dispatch({

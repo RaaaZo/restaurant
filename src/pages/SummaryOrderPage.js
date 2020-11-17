@@ -1,3 +1,4 @@
+import React from 'react'
 import { Header } from 'components/atoms/Header'
 import { HeroImage } from 'components/atoms/HeroImage'
 import { PagesWrapper } from 'components/atoms/PagesWrapper'
@@ -5,7 +6,6 @@ import { Paragraph } from 'components/atoms/Paragraph'
 import OrderedItem from 'components/molecules/OrderedItem'
 import OrderSummary from 'components/molecules/OrderSummary'
 import { addOrder } from 'ducks/actions/orderActions'
-import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 

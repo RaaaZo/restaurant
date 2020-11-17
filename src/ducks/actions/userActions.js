@@ -22,10 +22,13 @@ export const login = (email, password) => async (dispatch) => {
     })
 
     // destructure response.data
-    const { data } = await Axios.post('http://localhost:5000/api/users/login', {
-      email,
-      password,
-    })
+    const { data } = await Axios.post(
+      `${process.env.REACT_APP_BACKEND_URL}/api/users/login`,
+      {
+        email,
+        password,
+      }
+    )
 
     dispatch({
       type: USER_LOGIN_SUCCESS,
@@ -57,12 +60,15 @@ export const registerUser = (
       type: USER_REGISTER_REQUEST,
     })
 
-    const { data } = await Axios.post('http://localhost:5000/api/users', {
-      username,
-      email,
-      password,
-      confirmPassword,
-    })
+    const { data } = await Axios.post(
+      `${process.env.REACT_APP_BACKEND_URL}/api/users`,
+      {
+        username,
+        email,
+        password,
+        confirmPassword,
+      }
+    )
 
     dispatch({
       type: USER_REGISTER_SUCCESS,
@@ -103,7 +109,10 @@ export const fetchUserDetails = () => async (dispatch, getState) => {
       },
     }
 
-    const { data } = await Axios.get(`http://localhost:5000/api/users`, config)
+    const { data } = await Axios.get(
+      `${process.env.REACT_APP_BACKEND_URL}/api/users`,
+      config
+    )
 
     dispatch({
       type: USER_DETAILS_SUCCESS,
@@ -134,7 +143,7 @@ export const updateUserDetails = (user) => async (dispatch, getState) => {
     }
 
     const { data } = await Axios.put(
-      `http://localhost:5000/api/users`,
+      `${process.env.REACT_APP_BACKEND_URL}/api/users`,
       user,
       config
     )
@@ -150,7 +159,7 @@ export const updateUserDetails = (user) => async (dispatch, getState) => {
       error.response && error.response.data.message
         ? error.response.data.message
         : error.message
-    if (message === 'Not authorized, token failed') {
+    if (message === 'Błąd autoryzacji') {
       dispatch(logout())
     }
     dispatch({

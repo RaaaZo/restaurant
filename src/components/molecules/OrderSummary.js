@@ -36,12 +36,7 @@ const StyledButton = styled(Button)`
   margin-top: 20px;
 `
 
-const OrderSummary = ({
-  goToPayment,
-  checkoutHandler,
-  orderHistory,
-  order,
-}) => {
+const OrderSummary = ({ goToPayment, checkoutHandler, order, noButton }) => {
   const { push } = useHistory()
   const { cartItems } = useSelector((state) => state.cart)
 
@@ -71,7 +66,7 @@ const OrderSummary = ({
         price={orderFullPrice + deliveryTax || cartFullPrice + deliveryTax || 0}
       />
 
-      {orderHistory ? null : (
+      {noButton ? null : (
         <StyledButton
           onClick={() => {
             goToPayment && checkoutHandler()

@@ -100,10 +100,11 @@ const LoginPage = () => {
             email: '',
             password: '',
           }}
-          onSubmit={(values, { resetForm }) => {
+          onSubmit={(values, { resetForm, setErrors }) => {
             setLoginData(values)
 
             resetForm()
+            setErrors()
           }}
           validationSchema={LoginSchema}
         >

@@ -11,6 +11,20 @@ import FormCell from 'components/molecules/FormCell'
 import { Label } from 'components/atoms/Label'
 import { HeroImage } from 'components/atoms/HeroImage'
 import { addShippingAddressAndPaymentMethod } from 'ducks/actions/orderActions'
+import * as Yup from 'yup'
+
+const shippingSchema = Yup.object().shape({
+  address: Yup.string()
+    .required('Wymagane')
+    .max(30, 'Zbyt długi adres'),
+  city: Yup.string()
+    .required('Wymagane')
+    .max(20, 'Zbyt długa nazwa miasta'),
+  postalCode: Yup.string()
+    .required('Wymagane')
+    .max(10, 'Zbyt długi kod pocztowy'),
+  payment: Yup.string().required('Wymagane'),
+})
 
 const FormWrapper = styled.div`
   display: flex;
@@ -80,6 +94,7 @@ const ShippingPage = () => {
           resetForm()
           push('/summary')
         }}
+        validationSchema={shippingSchema}
       >
         {({ resetForm }) => {
           return (

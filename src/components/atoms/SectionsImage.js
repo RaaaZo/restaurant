@@ -10,7 +10,6 @@ export const SectionsImage = styled.div`
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  border-radius: 15px;
 
   @media (min-width: 768px) {
     height: 400px;
