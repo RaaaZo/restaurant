@@ -17,7 +17,7 @@ import LoadingSpinner from 'components/utils/LoadingSpinner'
 import { Paragraph } from 'components/atoms/Paragraph'
 import * as Yup from 'yup'
 import { OrderHistoryButton } from 'components/atoms/OrderHistoryButton'
-import { HeroImage } from 'components/atoms/HeroImage'
+import HeroImageComponent from 'components/molecules/HeroImageComponent'
 
 const UpdateSchema = Yup.object().shape({
   username: Yup.string()
@@ -142,9 +142,9 @@ const ProfilePage = () => {
           <LoadingSpinner />
         ) : (
           <>
-            <HeroImage
-              src='https://images.pexels.com/photos/2347311/pexels-photo-2347311.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
-              alt='Profile page hero image of food at the top'
+            <HeroImageComponent
+              image='https://images.pexels.com/photos/2347311/pexels-photo-2347311.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+              alternative='Profile page hero image of food at the top'
             />
 
             <MaxWidthWrapper>

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -13,7 +13,7 @@ import { BottomImage } from 'components/atoms/BottomImg'
 import { PhotosWrapper } from 'components/atoms/PhotosWrapper'
 
 import homeHero from 'assets/img/hero_home-min.jpg'
-import LoadingSpinner from 'components/utils/LoadingSpinner'
+import HeroImageComponent from 'components/molecules/HeroImageComponent'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -51,7 +51,6 @@ const StyledButton = styled(Button)`
 `
 
 const HomePage = () => {
-  const [isImageLoaded, setisImageLoaded] = useState(false)
   const history = useHistory()
   const bottomImages = useRef([])
 
@@ -107,12 +106,11 @@ const HomePage = () => {
 
   return (
     <PagesWrapper>
-      {!isImageLoaded && <LoadingSpinner />}
-      <HeroImage
-        src={homeHero}
-        alt='Home hero image at the top of page'
-        onLoad={() => setisImageLoaded(true)}
+      <HeroImageComponent
+        image={homeHero}
+        alternative='Home hero image at the top of page'
       />
+
       <InnerWrapper>
         <StyledHeader mainHeader>Strona Główna</StyledHeader>
         <StyledParagraph>

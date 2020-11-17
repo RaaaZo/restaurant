@@ -1,5 +1,5 @@
 import React from 'react'
-import styled, { css, ThemeProvider } from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 import GlobalStyle from '../theme/GlobalStyles'
 import { MainTheme } from '../theme/MainTheme'
 import ArrowUp from 'components/atoms/ArrowUp'

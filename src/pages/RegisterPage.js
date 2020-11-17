@@ -4,7 +4,6 @@ import styled, { css } from 'styled-components'
 import * as Yup from 'yup'
 import { Button } from 'components/atoms/Button'
 import { Header } from 'components/atoms/Header'
-import { HeroImage } from 'components/atoms/HeroImage'
 import { PagesWrapper } from 'components/atoms/PagesWrapper'
 import FormCell from 'components/molecules/FormCell'
 import { Form, Formik, ErrorMessage } from 'formik'
@@ -15,6 +14,7 @@ import { registerUser } from 'ducks/actions/userActions'
 import { useHistory } from 'react-router-dom'
 import { useEffect } from 'react'
 import LoadingSpinner from 'components/utils/LoadingSpinner'
+import HeroImageComponent from 'components/molecules/HeroImageComponent'
 
 const SignupSchema = Yup.object().shape({
   username: Yup.string()
@@ -106,15 +106,11 @@ const RegisterPage = () => {
     }
   }, [push, userDataChecker])
 
-  const [isImageLoaded, setisImageLoaded] = useState(false)
-
   return (
     <PagesWrapper>
-      {!isImageLoaded && <LoadingSpinner />}
-      <HeroImage
-        src={registerHero}
-        alt='Contact hero image at the top of the page'
-        onLoad={() => setisImageLoaded(true)}
+      <HeroImageComponent
+        image={registerHero}
+        alternative='Contact hero image at the top of the page'
       />
 
       <>

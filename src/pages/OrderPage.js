@@ -1,7 +1,7 @@
 import { Header } from 'components/atoms/Header'
-import { HeroImage } from 'components/atoms/HeroImage'
 import { PagesWrapper } from 'components/atoms/PagesWrapper'
 import { Paragraph } from 'components/atoms/Paragraph'
+import HeroImageComponent from 'components/molecules/HeroImageComponent'
 import OrderedItem from 'components/molecules/OrderedItem'
 import OrderSummary from 'components/molecules/OrderSummary'
 import LoadingSpinner from 'components/utils/LoadingSpinner'
@@ -108,9 +108,9 @@ const OrderPage = () => {
         <LoadingSpinner />
       ) : (
         <PagesWrapper>
-          <HeroImage
-            src='https://images.pexels.com/photos/2347311/pexels-photo-2347311.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
-            alt='Order page hero image of food at the top'
+          <HeroImageComponent
+            source='https://images.pexels.com/photos/2347311/pexels-photo-2347311.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+            alternative='Order page hero image of food at the top'
           />
 
           <StyledHeader mainHeader>

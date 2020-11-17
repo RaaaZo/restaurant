@@ -1,13 +1,12 @@
 import { Header } from 'components/atoms/Header'
-import React, { useState } from 'react'
+import React from 'react'
 import styled, { css } from 'styled-components'
-import { HeroImage } from 'components/atoms/HeroImage'
 import { PagesWrapper } from 'components/atoms/PagesWrapper'
 import { Paragraph } from 'components/atoms/Paragraph'
 import { SectionsImage } from 'components/atoms/SectionsImage'
 
 import contactHero from 'assets/img/hero_contact-min.jpg'
-import LoadingSpinner from 'components/utils/LoadingSpinner'
+import HeroImageComponent from 'components/molecules/HeroImageComponent'
 
 const InnerWrapper = styled.div`
   width: 100%;
@@ -72,15 +71,11 @@ const StyledIframe = styled.iframe`
 `
 
 const ContactPage = () => {
-  const [isImageLoaded, setisImageLoaded] = useState(false)
-
   return (
     <PagesWrapper>
-      {!isImageLoaded && <LoadingSpinner />}
-      <HeroImage
-        src={contactHero}
-        alt='Contact hero image at the top of the page'
-        onLoad={() => setisImageLoaded(true)}
+      <HeroImageComponent
+        image={contactHero}
+        alternative='Contact hero image at the top of the page'
       />
       <ContentWrapper>
         <StyledHeader mainHeader pageHeader>

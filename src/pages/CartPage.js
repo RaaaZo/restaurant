@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import OrderCheckout from 'components/organisms/OrderCheckout'
 import { Header } from 'components/atoms/Header'
-import { HeroImage } from 'components/atoms/HeroImage'
 import { PagesWrapper } from 'components/atoms/PagesWrapper'
 
 import orderHero from 'assets/img/hero_order-min.jpg'
@@ -10,7 +9,7 @@ import { useSelector } from 'react-redux'
 import { Button } from 'components/atoms/Button'
 import { useHistory } from 'react-router-dom'
 import { Paragraph } from 'components/atoms/Paragraph'
-import LoadingSpinner from 'components/utils/LoadingSpinner'
+import HeroImageComponent from 'components/molecules/HeroImageComponent'
 
 const StyledHeader = styled(Header)`
   position: relative;
@@ -52,15 +51,11 @@ const CartPage = () => {
 
   const { push } = useHistory()
 
-  const [isImageLoaded, setisImageLoaded] = useState(false)
-
   return (
     <PagesWrapper>
-      {!isImageLoaded && <LoadingSpinner />}
-      <HeroImage
-        src={orderHero}
-        alt='Contact hero image at the top of the page'
-        onLoad={() => setisImageLoaded(true)}
+      <HeroImageComponent
+        image={orderHero}
+        alternative='Contact hero image at the top of the page'
       />
       {cartItems.length === 0 ? (
         <InnerWrapper>
