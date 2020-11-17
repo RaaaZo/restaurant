@@ -71,7 +71,7 @@ const CartPage = () => {
       ) : (
         <>
           <InnerWrapper>
-            <StyledHeader>Twoje zamówienie:</StyledHeader>
+            <StyledHeader mainHeader>Twój Koszyk:</StyledHeader>
           </InnerWrapper>
           <OrderCheckout />
         </>

@@ -5,7 +5,7 @@ export const Input = styled(Field)`
   width: 100%;
   max-width: 500px;
   margin: 0 auto;
-  padding: 5px 0;
+  padding: 12px 0;
   font-size: ${({ theme: { fontSize } }) => fontSize.l};
   background-color: ${({ theme }) => theme.backgroundLight};
   text-align: center;

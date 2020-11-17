@@ -30,7 +30,7 @@ const FormWrapper = styled.div`
 `
 
 const StyledHeader = styled(Header)`
-  margin-top: 40px;
+  margin-top: 20px;
 
   ${({ link }) =>
     link &&
@@ -94,7 +94,7 @@ const LoginPage = () => {
       />
 
       <>
-        <StyledHeader>Zaloguj się!</StyledHeader>
+        <StyledHeader mainHeader>Zaloguj się!</StyledHeader>
         <Formik
           initialValues={{
             email: '',

@@ -5,7 +5,7 @@ export const SectionsImage = styled.div`
   max-width: 1280px;
   height: 300px;
   margin: 20px auto;
-  background-image: ${(props) => `url(${props.url})`};
+  background-image: ${({ url }) => `url(${url})`};
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

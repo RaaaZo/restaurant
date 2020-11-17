@@ -148,7 +148,7 @@ const ProfilePage = () => {
             />
 
             <MaxWidthWrapper>
-              <Header>
+              <Header mainHeader>
                 Profil <StyledSpan>{userInfo.username}</StyledSpan>
               </Header>
 

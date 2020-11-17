@@ -23,19 +23,8 @@ const InnerWrapper = styled.div`
 `
 
 const StyledHeader = styled(Header)`
-  position: relative;
   margin: 20px;
   padding-bottom: 20px;
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background-color: ${({ theme }) => theme.backgroundDark};
-  }
 `
 
 const StyledParagraph = styled(Paragraph)`
@@ -48,8 +37,8 @@ const StyledParagraph = styled(Paragraph)`
 `
 
 const StyledButton = styled(Button)`
-  background-color: ${({ theme }) => theme.accentsDark};
-  border: 2px solid ${({ theme }) => theme.accentsDark};
+  background-color: ${({ theme }) => theme.accentsLight};
+  border: 2px solid ${({ theme }) => theme.accentsLight};
   display: block;
   margin: 20px auto;
 
@@ -119,7 +108,7 @@ const HomePage = () => {
       <PagesWrapper>
         <HeroImage src={homeHero} alt='Home hero image at the top of page' />
         <InnerWrapper>
-          <StyledHeader>Lorem, ipsum dolor.</StyledHeader>
+          <StyledHeader mainHeader>Strona Główna</StyledHeader>
           <StyledParagraph>
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente,
             voluptatum tempore adipisci iste dignissimos quo doloribus in! Saepe

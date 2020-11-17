@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Label = styled.label`
   display: block;
@@ -8,4 +8,4 @@ export const Label = styled.label`
   @media (min-width: 768px) {
     font-size: ${({ theme }) => theme.fontSize.xxl};
   }
-`;
+`

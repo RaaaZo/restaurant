@@ -5,5 +5,9 @@ export const HeroImage = styled.img`
   max-height: 500px;
   object-fit: cover;
   object-position: center;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
+
+  @media (min-width: 1024px) {
+    margin-bottom: 40px;
+  }
 `

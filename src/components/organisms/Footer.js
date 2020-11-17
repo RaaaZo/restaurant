@@ -14,7 +14,7 @@ const Wrapper = styled.div`
 const StyledLink = styled.a`
   margin: 0 auto;
   color: #121212;
-  font-size: ${({ theme }) => theme.fontSize.m};
+  font-size: ${({ theme }) => theme.fontSize.l};
   font-weight: 700;
   text-decoration: none;
 

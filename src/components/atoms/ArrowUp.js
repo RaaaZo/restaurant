@@ -7,7 +7,7 @@ const StyledSvg = styled(ArrowSvg)`
   height: 40px;
   position: fixed;
   bottom: 5%;
-  right: 0;
+  right: 3%;
   background-color: rgb(255, 255, 255, 0.7);
   cursor: pointer;
   z-index: 10;

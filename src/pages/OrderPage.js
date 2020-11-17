@@ -85,6 +85,11 @@ const SummaryDataWrapper = styled.div`
   }
 `
 
+const StyledIdSpan = styled.span`
+  color: ${({ theme }) => theme.accentsLight};
+  font-style: italic;
+`
+
 const OrderPage = () => {
   const { id } = useParams()
   const dispatch = useDispatch()
@@ -108,7 +113,9 @@ const OrderPage = () => {
             alt='Order page hero image of food at the top'
           />
 
-          <StyledHeader>Zamówienie nr. {id}</StyledHeader>
+          <StyledHeader mainHeader>
+            Zamówienie nr. <StyledIdSpan>{id}</StyledIdSpan>
+          </StyledHeader>
 
           <SummaryOrderWrapper>
             <CartItemsWrapper>

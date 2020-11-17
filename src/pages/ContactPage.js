@@ -1,6 +1,6 @@
 import { Header } from 'components/atoms/Header'
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { HeroImage } from 'components/atoms/HeroImage'
 import { PagesWrapper } from 'components/atoms/PagesWrapper'
 import { Paragraph } from 'components/atoms/Paragraph'
@@ -27,6 +27,12 @@ const StyledHeader = styled(Header)`
   @media (min-width: 1360px) {
     font-size: ${({ theme: { fontSize } }) => fontSize.xxxxl};
   }
+
+  ${({ email }) =>
+    email &&
+    css`
+      color: ${({ theme }) => theme.accentsLight};
+    `}
 `
 
 const StyledInfoText = styled(Paragraph)`
@@ -72,7 +78,9 @@ const ContactPage = () => {
         alt='Contact hero image at the top of the page'
       />
       <ContentWrapper>
-        <StyledHeader pageHeader>Kontakt</StyledHeader>
+        <StyledHeader mainHeader pageHeader>
+          Kontakt
+        </StyledHeader>
 
         <StyledParagraph>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse sed,
@@ -86,7 +94,7 @@ const ContactPage = () => {
         >
           <InnerWrapper>
             <StyledHeader>Phone:</StyledHeader>
-            <StyledInfoText>123456789</StyledInfoText>
+            <StyledInfoText>123-456-789</StyledInfoText>
           </InnerWrapper>
         </SectionsImage>
 
@@ -101,8 +109,9 @@ const ContactPage = () => {
           url={`https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260`}
         >
           <InnerWrapper>
-            <StyledHeader>E-mail:</StyledHeader>
-            <StyledInfoText>restaurant@test.com</StyledInfoText>
+            <a href='mailto:restaurant@test.com'>
+              <StyledHeader email>Napisz do nas!</StyledHeader>
+            </a>
           </InnerWrapper>
         </SectionsImage>
 

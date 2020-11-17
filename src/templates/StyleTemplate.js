@@ -11,19 +11,13 @@ const PagesWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: ${({ theme }) => theme.backgroundLight};
-
-  ${({ darkMode }) =>
-    darkMode &&
-    css`
-      background-color: ${({ theme }) => theme.backgroundDark};
-    `}
 `
 
 const StyleTemplate = ({ children }) => {
   return (
     <ThemeProvider theme={MainTheme}>
       <GlobalStyle />
-      <PagesWrapper data-testid='theme-provider'>
+      <PagesWrapper>
         <ArrowUp />
         {children}
       </PagesWrapper>
